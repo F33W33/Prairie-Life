@@ -14,10 +14,10 @@
   let editingProfile = false;
 
   const jobs = {
-    retail: { title: "Store Associate", wage: 18, place: "Maple Market" },
-    cafe: { title: "Café Crew Member", wage: 17, place: "Northstar Café" },
-    delivery: { title: "Delivery Rider", wage: 20, place: "City-wide" },
-    office: { title: "Office Assistant", wage: 22, place: "Downtown" }
+    retail: { title: "Store Associate", wage: 18, place: "Midtown Plaza", siteId: "midtown", tasks: [{id:"retail_stock",label:"Restock the shelves"},{id:"retail_customer",label:"Help a customer"},{id:"retail_till",label:"Complete a checkout"}] },
+    cafe: { title: "Café Crew Member", wage: 17, place: "Hotel Senator · Café", siteId: "senator", tasks: [{id:"cafe_prep",label:"Prepare an order"},{id:"cafe_serve",label:"Serve a customer"},{id:"cafe_clean",label:"Clear a table"}] },
+    delivery: { title: "Delivery Rider", wage: 20, place: "City-wide · Dispatch", siteId: "cityhall", tasks: [{id:"delivery_pickup",label:"Collect a parcel"},{id:"delivery_drop1",label:"Deliver the first order"},{id:"delivery_drop2",label:"Deliver the second order"}] },
+    office: { title: "Office Assistant", wage: 22, place: "Nutrien Tower", siteId: "nutrien", tasks: [{id:"office_documents",label:"Sort incoming documents"},{id:"office_computer",label:"Enter information"},{id:"office_mail",label:"Deliver the paperwork"}] }
   };
   const homes = {
     starter: { title: "Starter Apartment", rent: 650, type: "Apartment", description: "A simple, comfortable place to begin your Canadian story." },
@@ -228,21 +228,31 @@
     if (!list) return;
     list.innerHTML = tasks.map((task, i) => '<button class="task-card" data-go="' + task.view + '"><span class="task-check">' + (task.done ? "✓" : i + 1) + '</span><span><strong>' + task.title + '</strong><small>' + task.sub + '</small></span><span>→</span></button>').join("");
   }
-  function earnShift() {
-    if (!state.job) return;
-    if (state.energy < 20) { toast("You're too tired for a shift. Get some rest first."); return; }
-    const hours = 4;
-    const earned = state.job.wage * hours;
-    state.cash += earned;
-    changeNeed("energy", -24);
-    changeNeed("hunger", -12);
-    changeNeed("happiness", 3);
-    state.day += 1;
-    respondToApplications();
-    state.rentPaid = false;
-    render();
-    if ($("#gamePanel")?.classList.contains("open")) openGamePanel("jobs");
-    toast("Shift complete! You earned " + money(earned) + " for " + hours + " hours of work.");
+  function showWorkPanel() {
+    const panel=$("#gamePanel"),content=$("#gamePanelContent");
+    if(!panel||!content||!state.workShift)return;
+    const job=state.job,shift=state.workShift,task=job.tasks[shift.progress];
+    content.innerHTML='<div class="phone-screen-heading"><span class="eyebrow">ON THE JOB</span><h2>'+job.title+'</h2><p>'+job.place+'</p></div><div class="career-current"><small>SHIFT IN PROGRESS</small><h3>'+shift.progress+' / '+job.tasks.length+' tasks complete</h3><p>'+(task?'Next task: '+task.label:'All tasks complete')+'</p><p>Walk to the matching work station and press E.</p><button class="career-work-button" data-work-close>Return to work area</button></div>';
+    panel.classList.add("open");
+  }
+  function beginWorkShift() {
+    if(!state.job)return;
+    if(state.workShift){showWorkPanel();return;}
+    if(state.energy<20){toast("You're too tired for a shift. Rest first.");return;}
+    state.workShift={progress:0,startedDay:state.day};saveState();showWorkPanel();
+    toast("Shift started. Complete each task at its marked work station.");
+  }
+  function completeWorkStation(id) {
+    if(!state.job||!state.workShift)return;
+    const task=state.job.tasks[state.workShift.progress];
+    if(!task)return;
+    if(task.id!==id){toast("Not the next station. "+task.label+" first.");return;}
+    state.workShift.progress++;
+    if(state.workShift.progress<state.job.tasks.length){saveState();toast("Task complete! "+state.workShift.progress+"/"+state.job.tasks.length);if($("#gamePanel")?.classList.contains("open"))showWorkPanel();return;}
+    const earned=state.job.wage*4;state.cash+=earned;changeNeed("energy",-24);changeNeed("hunger",-12);changeNeed("happiness",3);
+    state.day++;respondToApplications();state.rentPaid=false;state.workShift=null;render();
+    toast("Shift complete! You earned "+money(earned)+".");
+    if($("#gamePanel")?.classList.contains("open"))openGamePanel("jobs");
   }
   function buyProduct(id) {
     const item = products[id];
@@ -399,7 +409,7 @@
       body='<div class="career-phone-balance"><span>AVAILABLE BALANCE</span><b>'+money(state.cash)+'</b></div>';
       if(current){
         const currentKey=Object.keys(jobs).find(key=>jobs[key].title===current.title);
-        body+='<div class="career-current"><small>YOUR CURRENT POSITION</small><div><span>'+((icons[currentKey])||"💼")+'</span><section><b>'+current.title+'</b><small>'+current.place+' · '+money(current.wage)+'/hr</small></section></div><button class="career-work-button" data-job="'+currentKey+'">Work a 4-hour shift · '+money(current.wage*4)+'</button><p>Each shift earns pay and uses some energy.</p></div>';
+        body+='<div class="career-current"><small>YOUR CURRENT POSITION</small><div><span>'+((icons[currentKey])||"💼")+'</span><section><b>'+current.title+'</b><small>'+current.place+' · '+money(current.wage)+'/hr</small></section></div><p>Travel to your workplace in the 3D city and press E at the building to clock in. Complete three work tasks to earn a four-hour shift.</p></div>';
       }else{
         body+='<div class="career-welcome"><span>🌱</span><b>Your next chapter starts here.</b><small>Choose an open position below to get hired and start earning.</small></div>';
       }
@@ -493,7 +503,15 @@
     });
   });
 
-  document.addEventListener("maple:interact",e=>{const id=e.detail?.id;if(["jobs","home-life","shop","wallet"].includes(id)){navigate(id);gameToast("Welcome!");}else if(["cafe","park","market","library","square"].includes(id)){openPlace(id);}else if(id==="police")gameToast("Maplewood Police Station");});
+  document.addEventListener("maple:interact",e=>{
+    const id=e.detail?.id;
+    if(state.job&&state.job.siteId===id){beginWorkShift();return;}
+    if(["jobs","home-life","shop","wallet"].includes(id)){navigate(id);gameToast("Welcome!");}
+    else if(["cafe","park","market","library","square"].includes(id)){openPlace(id);}
+    else if(id==="police")gameToast("Maplewood Police Station");
+  });
+  document.addEventListener("maple:workstation-interact",e=>completeWorkStation(e.detail?.id));
+  $("#gamePanelContent")?.addEventListener("click",e=>{if(e.target.closest("[data-work-close]"))$("#gamePanel").classList.remove("open");});
   document.addEventListener("maple:game-toast",e=>gameToast(e.detail?.message||""));
   const oldRender=render;render=function(){oldRender();renderGameHud();};
 
