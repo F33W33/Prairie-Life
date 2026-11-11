@@ -158,11 +158,9 @@
   }
   function applicationFor(key) { return (state.applications || []).find(item => item.jobKey === key); }
   function updateJobButtons() {
-    $$("[data-job]").forEach(button => {
-      const job = jobs[button.dataset.job]; if (!job) return;
-      const current = state.job && state.job.title === job.title;
-      button.textContent = current ? "Work 4-hour shift" : "Already employed";
-      button.disabled = !current;
+    $("[data-job]").forEach(button => {
+      button.textContent = state.job ? "Go to workplace" : "Not employed";
+      button.disabled = !state.job;
     });
     $$("[data-apply]").forEach(button => {
       const app = applicationFor(button.dataset.apply);
@@ -332,13 +330,10 @@
     if (waitButton) { waitForEmployer(); return; }
     const jobButton = event.target.closest("[data-job]");
     if (jobButton) {
-      const job = jobs[jobButton.dataset.job];
-      if (state.job && job && state.job.title === job.title) { earnShift(); return; }
-      if (!job || state.job) { toast(state.job ? "You already have a job. Work a shift at your current workplace." : "That job is unavailable."); return; }
-      state.job = job;
-      render();
-      if ($("#gamePanel")?.classList.contains("open")) openGamePanel("jobs");
-      toast("You're hired! Welcome aboard as a " + job.title + ".");
+      if (!state.job) { toast("Apply for a position and wait for the employer's response."); return; }
+      $("#gamePanel")?.classList.remove("open");
+      navigate("city");
+      toast("Travel to "+state.job.place+" and press E at the workplace to clock in.");
       return;
     }
     const homeButton = event.target.closest("[data-home]");
