@@ -219,6 +219,23 @@ for(const p of places){
  }
  label(p.short,p.x,p.z-22,p.emoji);
 }
+// Physical work stations around downtown. Walk close and press E to interact.
+const workStations=[
+ {id:"retail_stock",x:-7,z:-25,emoji:"📦"},{id:"retail_customer",x:-25,z:-7,emoji:"🛍️"},{id:"retail_till",x:-43,z:-25,emoji:"💳"},
+ {id:"cafe_prep",x:-65,z:-55,emoji:"☕"},{id:"cafe_serve",x:-85,z:-35,emoji:"🥤"},{id:"cafe_clean",x:-105,z:-55,emoji:"🧽"},
+ {id:"office_documents",x:40,z:5,emoji:"📄"},{id:"office_computer",x:20,z:26,emoji:"💻"},{id:"office_mail",x:0,z:5,emoji:"📬"},
+ {id:"delivery_pickup",x:-85,z:95,emoji:"📦"},{id:"delivery_drop1",x:95,z:125,emoji:"🚲"},{id:"delivery_drop2",x:95,z:-115,emoji:"📦"}
+];
+for(const station of workStations){
+ const stand=new T.Group();stand.position.set(station.x,0,station.z);world.add(stand);
+ cube(stand,0,.55,0,2.8,1.1,2.1,mat(0x526c62));
+ cube(stand,0,1.25,0,2.4,.25,1.8,mat(0xe3d8bd));
+ const marker=new T.Mesh(new T.CylinderGeometry(.72,.72,.16,12),mat(0xf0c45d));marker.position.set(0,1.55,0);stand.add(marker);
+ const c=document.createElement("canvas");c.width=256;c.height=96;const ctx=c.getContext("2d");
+ ctx.fillStyle="#17242b";ctx.fillRect(0,0,256,96);ctx.fillStyle="#fff";ctx.font="bold 34px Arial";ctx.textAlign="center";ctx.fillText(station.emoji,128,64);
+ const tex=new T.CanvasTexture(c);const sign=new T.Mesh(new T.PlaneGeometry(2.2,.85),new T.MeshBasicMaterial({map:tex,transparent:true}));
+ sign.position.set(0,2.35,0);stand.add(sign);
+}
 // Small public squares, street planters and a continuous riverside promenade.
 for(const [x,z,w,d] of [[-35,48,22,18],[65,-45,20,24],[91,62,18,28]]){
  slab(x,z,w,d,grassMat,-.02,.12);
@@ -361,9 +378,12 @@ function nearest(){
  return d<5?best:null;
 }
 function interact(){
+ let station=null,distance=1e9;
+ for(const item of workStations){const d=Math.hypot(player.x-item.x,player.z-item.z);if(d<distance){distance=d;station=item;}}
+ if(station&&distance<5.5){document.dispatchEvent(new CustomEvent("maple:workstation-interact",{detail:{id:station.id}}));return;}
  const p=nearest();
  if(p)document.dispatchEvent(new CustomEvent("maple:interact",{detail:{id:p.id}}));
- else document.dispatchEvent(new CustomEvent("maple:game-toast",{detail:{message:"Explore the map and walk closer to a landmark."}}));
+ else document.dispatchEvent(new CustomEvent("maple:game-toast",{detail:{message:"Walk closer to a workplace, work station, or landmark."}}));
 }
 let keys={},walk=0,last=performance.now();
 window.addEventListener("keydown",e=>{
