@@ -263,6 +263,22 @@ aside .event{background:linear-gradient(120deg,#263c4b,#182c39);border:1px solid
 #nextDay{font-weight:900;letter-spacing:.04em}
 @media(max-width:850px){.wrap{padding:10px}.layout{grid-template-columns:1fr}.scene{min-height:340px}aside.panel{position:static}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.top{align-items:flex-start;padding:9px}.date{min-width:0;width:48%;font-size:10px}.date strong{font-size:12px}.brand p{font-size:8px}.scene{min-height:300px;padding:10px}.scene-copy{max-width:92%;padding:10px}.tabs button{min-width:calc(33.33% - 6px);font-size:11px}.stats{gap:6px}.stat{padding:8px}.panel{padding:9px}}
+
+/* Premium compact time-and-weather HUD */
+.date{position:relative;isolation:isolate;min-width:248px;padding:10px 12px 11px;text-align:left;color:#d7e5ed;border:1px solid #607e91;border-radius:15px;background:linear-gradient(145deg,#172c40f5 0%,#0c1b2af5 72%);box-shadow:0 8px 22px #0008,inset 0 1px #ffffff18;overflow:hidden}
+.date:before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 100% 0%,#e8b65b25,transparent 58%),linear-gradient(110deg,transparent 35%,#ffffff06 50%,transparent 65%)}
+.date strong{display:block;color:#ffe09a;font-size:15px;line-height:1.2;font-weight:900;letter-spacing:.02em;text-shadow:0 0 12px #eab95745;margin-bottom:6px}
+#weatherLabel{display:block;font-size:12px;color:#b8cad7;line-height:1.35}
+.clockline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;padding:5px 8px;border-radius:8px;background:#071521a8;border:1px solid #ffffff12;font-size:12px;font-weight:800;color:#f3f6f7}
+.clockline #clockLabel{font-variant-numeric:tabular-nums;letter-spacing:.025em}
+.clockline #timePhase{font-size:9px;letter-spacing:.13em;color:#ffda84;font-weight:950}
+.daytrack{height:16px;position:relative;margin-top:9px;border-radius:99px;overflow:visible;border:1px solid #8ba0ad88;background:linear-gradient(90deg,#172b4a 0%,#263d65 9%,#d98b58 20%,#f7d27b 34%,#f8df9b 50%,#e9a35f 72%,#b76d57 84%,#263d65 94%,#172b4a 100%);box-shadow:inset 0 2px 4px #07101a99,0 2px 9px #0006}
+.daytrack:after{content:"";position:absolute;inset:0;border-radius:99px;background:linear-gradient(180deg,#ffffff35,transparent 55%,#06101a55);pointer-events:none}
+.phase-night{position:absolute;top:0;font-size:10px;line-height:14px;z-index:2;filter:drop-shadow(0 1px 2px #000)}
+.phase-night:first-child{left:5px}.phase-night:last-child{right:5px}
+.phase-sun{position:absolute;top:-7px;left:12.5%;transform:translateX(-50%);font-size:19px;line-height:20px;z-index:3;filter:drop-shadow(0 0 4px #ffc85e) drop-shadow(0 2px 2px #000);transition:left .4s cubic-bezier(.2,.8,.2,1)}
+@media(max-width:850px){.date{min-width:225px}}
+@media(max-width:520px){.date{width:54%;min-width:0;padding:8px 9px}.date strong{font-size:12px}#weatherLabel{font-size:10px}.clockline{margin-top:5px;padding:4px 6px;font-size:10px}.clockline #timePhase{font-size:8px}.daytrack{height:14px;margin-top:7px}.phase-sun{font-size:17px}}
 </style>
 </head>
 <body>
