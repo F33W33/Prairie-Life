@@ -240,7 +240,7 @@
     if(!state.job)return;
     if(state.workShift){showWorkPanel();return;}
     if(state.energy<20){toast("You're too tired for a shift. Rest first.");return;}
-    state.workShift={progress:0,startedDay:state.day};saveState();showWorkPanel();
+    state.workShift={progress:0,startedDay:state.day};document.dispatchEvent(new CustomEvent("maple:work-shift-state",{detail:{active:true}}));saveState();showWorkPanel();
     toast("Shift started. Complete each task at its marked work station.");
   }
   function completeWorkStation(id) {
@@ -251,7 +251,7 @@
     state.workShift.progress++;
     if(state.workShift.progress<state.job.tasks.length){saveState();toast("Task complete! "+state.workShift.progress+"/"+state.job.tasks.length);if($("#gamePanel")?.classList.contains("open"))showWorkPanel();return;}
     const earned=state.job.wage*4;state.cash+=earned;changeNeed("energy",-24);changeNeed("hunger",-12);changeNeed("happiness",3);
-    state.day++;respondToApplications();state.rentPaid=false;state.workShift=null;render();
+    state.day++;respondToApplications();state.rentPaid=false;state.workShift=null;document.dispatchEvent(new CustomEvent("maple:work-shift-state",{detail:{active:false}}));render();
     toast("Shift complete! You earned "+money(earned)+".");
     if($("#gamePanel")?.classList.contains("open"))openGamePanel("jobs");
   }
@@ -508,6 +508,8 @@
   document.addEventListener("maple:interact",e=>{
     const id=e.detail?.id;
     if(state.job&&state.job.siteId===id){beginWorkShift();return;}
+    const buildingActions={midtown:"market",senator:"cafe",cityhall:"square",library:"library",bessborough:"cafe",remai:"square",tcu:"square",drinkle:"square",alt:"cafe",nutrien:"square"};
+    if(buildingActions[id]){openPlace(buildingActions[id]);return;}
     if(["jobs","home-life","shop","wallet"].includes(id)){navigate(id);gameToast("Welcome!");}
     else if(["cafe","park","market","library","square"].includes(id)){openPlace(id);}
     else if(id==="police")gameToast("Maplewood Police Station");
