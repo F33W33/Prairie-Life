@@ -376,6 +376,24 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
  #setup .field{margin:11px 0}
 }
 
+
+/* Reliable vehicle movement on all devices, including reduced-motion browsers */
+.town-world .town-car{left:-75px!important;right:auto!important;animation:town-drive-across 16s linear infinite!important;transform:none!important;opacity:1!important;visibility:visible!important}
+.town-world .car-one{animation-delay:0s!important}
+.town-world .car-two{animation-delay:-5.33s!important}
+.town-world .town-truck{animation-delay:-10.66s!important}
+@keyframes town-drive-across{
+ from{left:-75px;transform:translateX(0);opacity:1}
+ to{left:calc(100% + 75px);transform:translateX(0);opacity:1}
+}
+/* The game intentionally keeps traffic moving even if system-wide reduced motion is on. */
+@media(prefers-reduced-motion:reduce){
+ .scene .town-world .town-car{animation:town-drive-across 16s linear infinite!important;opacity:1!important;visibility:visible!important}
+ .scene .town-world .car-one{animation-delay:0s!important}
+ .scene .town-world .car-two{animation-delay:-5.33s!important}
+ .scene .town-world .town-truck{animation-delay:-10.66s!important}
+}
+
 </style>
 </head>
 <body>
