@@ -195,15 +195,18 @@
   }
   function acceptJobOffer(key) {
     const app = applicationFor(key), job = jobs[key]; if (!app || app.status !== "offer" || !job || state.job) return;
-    state.job = job; app.status = "accepted";
+    state.job = job; state.workShift=null; app.status = "accepted";
     state.applications = state.applications.filter(item => item.jobKey === key);
     render(); if ($("#gamePanel")?.classList.contains("open")) openGamePanel("jobs");
-    toast("Offer accepted! You are now a " + job.title + ".");
+    toast("Offer accepted! Travel to "+job.place+" to start your first shift.");
   }
   function waitForEmployer() {
-    state.day += 1; changeNeed("energy", -3); respondToApplications(); render();
+    state.day += 1; changeNeed("energy", -3);
+    respondToApplications();
+    (state.applications||[]).forEach(app=>{if(app.status==="pending"&&app.submittedDay<state.day){app.status="offer";app.respondedDay=state.day;}});
+    render();
     if ($("#gamePanel")?.classList.contains("open")) openGamePanel("jobs");
-    toast("A new day in Maplewood. Check your applications for employer replies.");
+    toast("A new day in Maplewood. Employer replies have arrived — check Careers.");
   }
 
   function updateHomeButtons() {
@@ -408,6 +411,10 @@
       }else{
         body+='<div class="career-welcome"><span>🌱</span><b>Your next chapter starts here.</b><small>Choose an open position below to get hired and start earning.</small></div>';
       }
+      const pendingApps=(state.applications||[]).filter(app=>app.status==="pending");
+      const offerApps=(state.applications||[]).filter(app=>app.status==="offer");
+      if(offerApps.length)body+='<div class="career-current"><b>📩 Employer response</b>'+offerApps.map(app=>'<p>'+jobs[app.jobKey].title+' — offer received</p><button class="career-work-button" data-accept-job="'+app.jobKey+'">Accept job offer</button>').join("")+'</div>';
+      if(pendingApps.length)body+='<div class="career-current"><b>⏳ Applications awaiting a reply</b><p>Employers respond after one in-game day.</p><button class="career-work-button" data-wait-employer>Advance one day · Check replies</button></div>';
       body+='<div class="career-section-label">OPEN POSITIONS <span>4 JOBS</span></div><div class="career-phone-list">'+Object.entries(jobs).map(([key,job])=>{const app=applicationFor(key);const label=current?'Already employed':app?(app.status==='pending'?'Pending':app.status==='offer'?'Offer received':app.status==='accepted'?'Hired':'Apply again'):'Apply';return '<article class="career-phone-card"><div class="career-phone-icon">'+icons[key]+'</div><div class="career-phone-info"><b>'+job.title+'</b><small>'+job.place+'</small><p>'+descriptions[key]+'</p><strong>'+money(job.wage)+' <small>/ hour</small></strong></div><button class="career-apply-button" data-apply="'+key+'" '+(current||app&&app.status!=="rejected"?'disabled':'')+'>'+label+'</button></article>';}).join("")+'</div>';
     }else if(type==="home-life"){
       title="🏡 My home";subtitle="HOMES IN MAPLEWOOD";
