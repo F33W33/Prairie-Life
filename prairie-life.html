@@ -218,11 +218,56 @@ input[type=range]::-webkit-slider-thumb{cursor:pointer}
  .scene .building:before{font-size:8px;max-width:96px;min-height:27px;padding:4px 6px;top:-37px;letter-spacing:0}
  .scene .building:after{inset-left:5px;inset-right:5px}
 }
-\n/* In-game clock and day/night timeline */\n.clockline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:7px;font-size:12px;font-weight:800}.clockline #timePhase{font-size:10px;letter-spacing:1px;color:#f4c46b}.daytrack{height:13px;position:relative;margin-top:6px;border-radius:99px;background:linear-gradient(90deg,#263b61 0%,#e9a957 18%,#f6d77d 48%,#e9a957 78%,#263b61 100%);border:1px solid #ffffff38;box-shadow:inset 0 1px 3px #0005}.daytrack:after{content:"";position:absolute;left:0;right:0;top:5px;border-top:1px solid #ffffff55}.phase-night{position:absolute;top:-5px;font-size:12px}.phase-night:first-child{left:3px}.phase-night:last-child{right:3px}.phase-sun{position:absolute;top:-8px;left:12.5%;transform:translateX(-50%);font-size:17px;filter:drop-shadow(0 1px 3px #0008);transition:left .35s ease;z-index:1}@media(max-width:480px){.daytrack{max-width:220px}.clockline{max-width:220px}}\n</style>
+\n/* In-game clock and day/night timeline */\n.clockline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:7px;font-size:12px;font-weight:800}.clockline #timePhase{font-size:10px;letter-spacing:1px;color:#f4c46b}.daytrack{height:13px;position:relative;margin-top:6px;border-radius:99px;background:linear-gradient(90deg,#263b61 0%,#e9a957 18%,#f6d77d 48%,#e9a957 78%,#263b61 100%);border:1px solid #ffffff38;box-shadow:inset 0 1px 3px #0005}.daytrack:after{content:"";position:absolute;left:0;right:0;top:5px;border-top:1px solid #ffffff55}.phase-night{position:absolute;top:-5px;font-size:12px}.phase-night:first-child{left:3px}.phase-night:last-child{right:3px}.phase-sun{position:absolute;top:-8px;left:12.5%;transform:translateX(-50%);font-size:17px;filter:drop-shadow(0 1px 3px #0008);transition:left .35s ease;z-index:1}@media(max-width:480px){.daytrack{max-width:220px}.clockline{max-width:220px}}\n
+/* GAME HUD / immersive Prairie Life presentation */
+body{background:#080f18;color:#edf4f7;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background-image:radial-gradient(ellipse at 50% -20%,#31556a 0,transparent 50%),linear-gradient(#0b1520,#080e16);background-attachment:fixed}
+.wrap{max-width:1540px;padding:14px 22px 26px}
+.top{position:relative;margin:0 0 12px;padding:10px 14px;background:linear-gradient(100deg,#142535ed,#1c3542e8);border:1px solid #587082;border-radius:16px;box-shadow:0 8px 26px #0008}
+.brand h1{font-size:23px;letter-spacing:.035em;text-transform:uppercase;text-shadow:0 2px 12px #0008}
+.brand p{font-size:10px;letter-spacing:.18em;color:#91afbd}
+.leaf{width:43px;height:43px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,#f5d48a,#b97937);font-size:27px;box-shadow:inset 0 1px #fff8,0 4px 12px #0006}
+.date{min-width:230px;padding:7px 10px;border:1px solid #5a7484;border-radius:11px;background:#0b1722b8}
+.date strong{font-size:14px;color:#f5d17c}
+.clockline{font-size:12px}
+.layout{grid-template-columns:minmax(0,1.8fr) minmax(280px,.72fr);gap:12px;align-items:start}
+.panel{background:linear-gradient(145deg,#1a2d3bdc,#101e2bdc);border:1px solid #526a79;border-radius:15px;padding:12px;box-shadow:0 12px 34px #0007,inset 0 1px #ffffff0c}
+.layout>section.panel{padding:12px}
+.scene{min-height:clamp(330px,48vw,590px);border:1px solid #718d99;border-radius:11px;box-shadow:inset 0 -90px 100px #09131b55,0 8px 22px #0006}
+.scene:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#09131b38,transparent 25%,transparent 75%,#09131b38),linear-gradient(0deg,#07111b55,transparent 35%);z-index:2}
+.scene-copy{z-index:3;max-width:75%;padding:14px 18px;border:1px solid #ffffff35;border-radius:12px;background:linear-gradient(100deg,#0b1824d9,#0b182488);backdrop-filter:blur(5px);box-shadow:0 5px 20px #0006}
+.scene-copy small{font-weight:900;letter-spacing:.18em;color:#f4cf7d}
+.scene-copy h2{font-size:clamp(21px,3vw,34px);line-height:1.1;text-shadow:0 2px 8px #0009}
+.scene-copy p{color:#d5e4e9;margin-bottom:0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:10px 0}
+.stat{padding:9px 11px;border:1px solid #435d6d;border-radius:10px;background:linear-gradient(145deg,#21394a,#142634);box-shadow:0 3px 9px #0004}
+.stat span{font-size:11px;color:#b7cbd4}.stat strong{font-size:14px;color:#f5d17c}
+.meter{height:6px;background:#07131d;border-radius:99px;overflow:hidden}.meter i{background:linear-gradient(90deg,#5bb98b,#c4df88);box-shadow:0 0 8px #78d3a566}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:7px;margin:8px 0 12px;border:1px solid #435d6d;border-radius:12px;background:#0c1924}
+.tabs button{flex:1;min-width:90px;padding:10px 8px;border:1px solid transparent;border-radius:8px;background:#1a2e3c;color:#b8cbd3;font-size:12px;box-shadow:inset 0 1px #ffffff0b}
+.tabs button.active{background:linear-gradient(180deg,#f5d68d,#dba74e);color:#1a2630;border-color:#ffe4a2;box-shadow:0 3px 12px #dba74e44;font-weight:900}
+.section-head{border-bottom:1px solid #ffffff17;padding-bottom:8px;margin-bottom:10px}
+.section-head h3{font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+.card{background:linear-gradient(145deg,#243b4b,#182b39);border:1px solid #496374;border-radius:11px;box-shadow:0 4px 12px #0003}
+.card h4{font-size:14px}.card p{font-size:12px;color:#b9cbd3}
+button{border-radius:9px;background:linear-gradient(180deg,#344e60,#243a4a);border-color:#597487;box-shadow:0 2px 5px #0004;font-size:12px}
+button:hover{filter:brightness(1.15);transform:translateY(-1px);box-shadow:0 4px 12px #0006}
+button.primary{background:linear-gradient(180deg,#ffe09a,#dca64d);color:#202a30;border-color:#ffe5a7;box-shadow:0 3px 12px #d99c3f55}
+aside.panel{position:sticky;top:12px;min-height:360px}
+aside .section-head:first-child h3{color:#f5d17c}
+aside .card h2{font-size:22px;color:#f5d17c}
+aside .event{background:linear-gradient(120deg,#263c4b,#182c39);border:1px solid #4c6878;border-left:3px solid #e6b65e;border-radius:10px}
+.log{background:#0b1721;border:1px solid #344d5d;border-radius:9px;padding:9px;min-height:110px}
+.log p{font-size:11px;color:#c0d0d7;border-bottom:1px solid #ffffff10;padding:5px 0}
+.badge{background:#30495a;border:1px solid #668091;color:#dce9ec;border-radius:99px}
+.notice{font-size:10px;color:#8fa7b3}
+#nextDay{font-weight:900;letter-spacing:.04em}
+@media(max-width:850px){.wrap{padding:10px}.layout{grid-template-columns:1fr}.scene{min-height:340px}aside.panel{position:static}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.top{align-items:flex-start;padding:9px}.date{min-width:0;width:48%;font-size:10px}.date strong{font-size:12px}.brand p{font-size:8px}.scene{min-height:300px;padding:10px}.scene-copy{max-width:92%;padding:10px}.tabs button{min-width:calc(33.33% - 6px);font-size:11px}.stats{gap:6px}.stat{padding:8px}.panel{padding:9px}}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header class="top"><div class="brand"><div class="leaf">🍁</div><div><h1>Prairie Life</h1><p>THE GREAT WHITE NORTH · A CANADIAN LIFE SIM</p></div></div><div class="date"><strong id="dayLabel">Day 1 · Spring</strong><span id="weatherLabel">⛅ +4°C · Saskatoon</span><div class="clockline"><span id="clockLabel">🕗 8:00 AM</span><span id="timePhase">DAYTIME</span></div><div class="daytrack" aria-label="Daytime and nighttime cycle"><span class="phase-night">🌙</span><span class="phase-sun" id="sunMarker">☀️</span><span class="phase-night">🌙</span></div></div></header>
+<header class="top"><div class="brand"><div class="leaf">🍁</div><div><h1>Prairie Life</h1><p>THE GREAT WHITE NORTH · OPEN-WORLD LIFE SIM</p></div></div><div class="date"><strong id="dayLabel">Day 1 · Spring</strong><span id="weatherLabel">⛅ +4°C · Saskatoon</span><div class="clockline"><span id="clockLabel">🕗 8:00 AM</span><span id="timePhase">DAYTIME</span></div><div class="daytrack" aria-label="Daytime and nighttime cycle"><span class="phase-night">🌙</span><span class="phase-sun" id="sunMarker">☀️</span><span class="phase-night">🌙</span></div></div></header>
 <main class="layout">
 <section class="panel">
 <div class="scene winter" id="scene"><div class="town-world" aria-label="Animated town"><div class="town-sun"></div><div class="town-cloud cloud-a"></div><div class="town-cloud cloud-b"></div><div class="town-tree tree-a">🌲</div><div class="town-tree tree-b">🌲</div><div class="skyline"><button class="building" data-town="Delta Hotels Bessborough" data-address="601 Spadina Crescent East" title="Visit Prairie Market"></button><button class="building" data-town="Midtown Shopping Centre" data-address="201 1st Avenue South" title="Visit downtown offices"></button><button class="building" data-town="Saskatoon City Hall" data-address="222 3rd Avenue North" title="Visit Northstar Café"></button><button class="building" data-town="Frances Morrison Central Library" data-address="311 23rd Street East" title="Visit Central Library"></button></div><div class="town-sidewalk"></div><div class="town-road"><span class="road-dash"></span><span class="road-dash"></span><span class="road-dash"></span></div><div class="town-car car-one">🚙</div><div class="town-car car-two">🚗</div><div class="town-car town-truck">🚚</div><div class="town-person person-one">🚶</div><div class="town-person person-two">🧍</div><div class="town-person person-three">🚶‍♀️</div><div class="town-label">MAPLE AVENUE <i>·</i> DOWNTOWN</div></div><div class="scene-copy"><small id="sceneKicker">YOUR NEW BEGINNING</small><h2 id="sceneTitle">A fresh start on the Prairies</h2><p id="sceneSub">Big skies. Bigger possibilities. Dress in layers.</p></div></div>
@@ -232,12 +277,12 @@ input[type=range]::-webkit-slider-thumb{cursor:pointer}
 <div class="footer"><span id="locationLabel">📍 Saskatoon, Saskatchewan</span><button class="quiet" id="saveBtn">Save game</button></div>
 </section>
 <aside class="panel">
-<div class="section-head"><h3>📱 Your phone</h3><span class="badge" id="jobBadge">No job yet</span></div>
+<div class="section-head"><h3>🎮 Player HUD</h3><span class="badge" id="jobBadge">No job yet</span></div>
 <div class="cards" style="grid-template-columns:repeat(2,1fr)">
 <div class="card"><span class="muted">BANK</span><h2 id="cashLabel">$2,500</h2><small class="muted">Canadian dollars</small></div>
 <div class="card"><span class="muted">INVENTORY</span><h2 id="itemCount">3 items</h2><small class="muted" id="homeLabel">No home rented</small></div>
 </div>
-<div class="event" id="eventBox"><strong>📨 INCOMING</strong><span id="eventText">Your first day in Canada starts now.</span></div>
+<div class="event" id="eventBox"><strong>📨 NEW MESSAGE</strong><span id="eventText">Your first day in Canada starts now.</span></div>
 <div class="section-head"><h3>Recent activity</h3><span class="badge">LIVE</span></div>
 <div class="log" id="log"></div>
 <div class="actions" style="margin-top:14px"><button id="nextDay" class="primary" style="flex:1">🌙 End day</button><button id="resetBtn" class="quiet">↻ New game</button></div>
