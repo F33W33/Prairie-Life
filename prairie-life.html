@@ -151,12 +151,18 @@ input[type=range]::-webkit-slider-thumb{cursor:pointer}
   box-shadow:inset 0 0 0 2px #ffffff18;
 }
 .scene .building:before{
-  content:attr(data-town);position:absolute;z-index:3;left:0;right:0;bottom:0;
-  height:19px;display:flex;align-items:center;justify-content:center;
-  color:#f8eed7;background:linear-gradient(#435761,#263b44);
-  border-top:2px solid #d0c2a1;font-size:clamp(5px,.65vw,8px);
-  font-weight:900;letter-spacing:.06em;text-transform:uppercase;
-  white-space:nowrap;overflow:hidden;text-shadow:0 1px 2px #000;
+  content:attr(data-town);position:absolute;z-index:8;
+  left:50%;top:-34px;bottom:auto;right:auto;
+  transform:translateX(-50%);
+  width:max-content;max-width:145px;min-height:24px;
+  box-sizing:border-box;padding:5px 8px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  color:#fff8e8;background:linear-gradient(145deg,#344c57,#182e38);
+  border:1px solid #e5d0a0;border-radius:5px;
+  font-size:9px;line-height:1.15;font-weight:900;
+  letter-spacing:.025em;text-transform:uppercase;
+  white-space:normal;overflow:visible;overflow-wrap:anywhere;
+  text-shadow:0 1px 2px #000;box-shadow:0 3px 8px #142b3877;
 }
 .scene .building:nth-child(1){
   height:108px;width:13%;max-width:100px;
@@ -207,7 +213,7 @@ input[type=range]::-webkit-slider-thumb{cursor:pointer}
 .scene .building:hover{filter:brightness(1.13) saturate(1.05)}
 .scene.night .building:after{background-color:#263f4c;filter:drop-shadow(0 0 5px #f5d38b66)}
 @media(max-width:560px){
- .scene .building:before{font-size:5px;letter-spacing:0}
+ .scene .building:before{font-size:8px;max-width:96px;min-height:27px;padding:4px 6px;top:-37px;letter-spacing:0}
  .scene .building:after{inset-left:5px;inset-right:5px}
 }
 </style>
