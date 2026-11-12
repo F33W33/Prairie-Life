@@ -302,10 +302,13 @@ function addCar(axis,fixed,position,direction,index){
 
 // Player marker with simple blocky avatar
 const player={x:-35,z:-35,yaw:0};const avatar=new T.Group();world.add(avatar);
-cube(avatar,0,1,0,1,1.2,.65,mat(0x368dc4));
-cube(avatar,0,1.95,0,.78,.75,.7,mat(0xc9906d));
-cube(avatar,0,2.35,0,.8,.2,.72,mat(0x302b29));
-cube(avatar,-.27,.3,0,.34,.65,.42,mat(0x35415d));cube(avatar,.27,.3,0,.34,.65,.42,mat(0x35415d));
+const skin=mat(0xc9906d),shirt=mat(0x368dc4),pants=mat(0x35415d),hair=mat(0x302b29);
+cube(avatar,0,1.35,0,.72,1.05,.42,shirt);
+cube(avatar,0,2.15,0,.62,.68,.62,skin);
+cube(avatar,0,2.52,-.04,.66,.22,.66,hair);
+cube(avatar,-.46,1.38,0,.22,.88,.24,shirt);cube(avatar,.46,1.38,0,.22,.88,.24,shirt);
+cube(avatar,-.22,.48,0,.27,.86,.32,pants);cube(avatar,.22,.48,0,.27,.86,.32,pants);
+cube(avatar,-.22,.04,.08,.3,.16,.48,mat(0x252b31));cube(avatar,.22,.04,.08,.3,.16,.48,mat(0x252b31));
 const locationById=Object.fromEntries(places.map(p=>[p.id,p]));
 const placeLabels=[],placeHitAreas=[];
 for(const p of places){
@@ -375,15 +378,16 @@ new ResizeObserver(resize).observe(host);resize();
 function nearest(){
  let best=null,d=1e9;
  for(const p of places){const n=Math.hypot(player.x-p.x,player.z-p.z);if(n<d){d=n;best=p;}}
- return d<5?best:null;
+ return d<23?best:null;
 }
 function interact(){
+ const p=nearest();
+ // Clock in at the employer's building before checking nearby task stations.
+ if(p){document.dispatchEvent(new CustomEvent("maple:interact",{detail:{id:p.id}}));return;}
  let station=null,distance=1e9;
  for(const item of workStations){const d=Math.hypot(player.x-item.x,player.z-item.z);if(d<distance){distance=d;station=item;}}
- if(station&&distance<5.5){document.dispatchEvent(new CustomEvent("maple:workstation-interact",{detail:{id:station.id}}));return;}
- const p=nearest();
- if(p)document.dispatchEvent(new CustomEvent("maple:interact",{detail:{id:p.id}}));
- else document.dispatchEvent(new CustomEvent("maple:game-toast",{detail:{message:"Walk closer to a workplace, work station, or landmark."}}));
+ if(station&&distance<9){document.dispatchEvent(new CustomEvent("maple:workstation-interact",{detail:{id:station.id}}));return;}
+ document.dispatchEvent(new CustomEvent("maple:game-toast",{detail:{message:"Move closer to a building or marked work station."}}));
 }
 let keys={},walk=0,last=performance.now();
 window.addEventListener("keydown",e=>{
@@ -408,7 +412,7 @@ function frame(t){
  let dx=0,dz=0;if(keys.KeyW||keys.ArrowUp)dz-=1;if(keys.KeyS||keys.ArrowDown)dz+=1;
  if(keys.KeyA||keys.ArrowLeft)dx-=1;if(keys.KeyD||keys.ArrowRight)dx+=1;
  const len=Math.hypot(dx,dz);
- if(len){dx/=len;dz/=len;const speed=keys.ShiftLeft||keys.ShiftRight?.55:.22;
+ if(len){dx/=len;dz/=len;const speed=keys.ShiftLeft||keys.ShiftRight?34:22;
  player.x=T.MathUtils.clamp(player.x+dx*speed*dt,-145,112);
  player.z=T.MathUtils.clamp(player.z+dz*speed*dt,-145,145);walk+=dt*speed;
  player.yaw=Math.atan2(dx,dz);
