@@ -126,6 +126,90 @@ input[type=range]::-webkit-slider-thumb{cursor:pointer}
 @keyframes sun-drift{from{translate:0 5px}to{translate:-22px -5px}}
 @media(prefers-reduced-motion:reduce){.town-car,.town-person,.town-cloud,.town-sun,.road-dash{animation:none}}
 @media(max-width:560px){.scene{min-height:225px}.scene .skyline{bottom:55px}.town-tree{font-size:27px}.town-road{height:37px}.town-sidewalk{bottom:37px}.town-person{bottom:43px}.town-label{bottom:42px;font-size:7px}}
+
+/* More lifelike downtown architecture: varied materials, façades and rooflines */
+.scene .building{
+  position:relative;overflow:visible;isolation:isolate;
+  border:1px solid #263b45;border-bottom:4px solid #263b45;
+  border-radius:3px 3px 0 0;
+  background:
+    linear-gradient(90deg,#182d38aa 0 5%,transparent 12% 82%,#182d3866 100%),
+    repeating-linear-gradient(90deg,transparent 0 18px,#ffffff12 18px 20px),
+    linear-gradient(100deg,#9aabb0 0%,#d1d2c7 24%,#a9b6b4 72%,#657d87 100%);
+  box-shadow:inset 5px 0 8px #ffffff22,inset -7px 0 9px #142a3544,0 7px 12px #142b3866;
+  transform-origin:bottom center;
+}
+.scene .building:after{
+  content:"";position:absolute;z-index:1;inset:15px 9px 9px;
+  background:
+    linear-gradient(90deg,#263d4a 0 2px,transparent 2px calc(100% - 2px),#263d4a calc(100% - 2px)),
+    repeating-linear-gradient(90deg,#273f4a 0 3px,transparent 3px 17px),
+    repeating-linear-gradient(0deg,#273f4a 0 3px,transparent 3px 22px),
+    repeating-linear-gradient(0deg,transparent 0 5px,#f3d99d 5px 17px,transparent 17px 22px);
+  background-color:#344f5a;
+  border:2px solid #354c55;
+  box-shadow:inset 0 0 0 2px #ffffff18;
+}
+.scene .building:before{
+  content:attr(data-town);position:absolute;z-index:3;left:0;right:0;bottom:0;
+  height:19px;display:flex;align-items:center;justify-content:center;
+  color:#f8eed7;background:linear-gradient(#435761,#263b44);
+  border-top:2px solid #d0c2a1;font-size:clamp(5px,.65vw,8px);
+  font-weight:900;letter-spacing:.06em;text-transform:uppercase;
+  white-space:nowrap;overflow:hidden;text-shadow:0 1px 2px #000;
+}
+.scene .building:nth-child(1){
+  height:108px;width:13%;max-width:100px;
+  background:linear-gradient(90deg,#6f7777,#c3b9a3 23%,#a99d86 78%,#5c696b);
+}
+.scene .building:nth-child(1):after{
+  inset:16px 8px 23px;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 18px,#665b4b 18px 21px),
+    repeating-linear-gradient(0deg,#e6c88f 0 13px,#665b4b 13px 17px,#dac49a 17px 20px);
+  border:3px solid #695e4e;
+}
+.scene .building:nth-child(2){
+  height:158px;width:16%;max-width:125px;
+  border-top:7px solid #536c78;
+  background:linear-gradient(90deg,#566d78,#aebfc0 18%,#d0d2c8 50%,#8fa5aa 83%,#3d5661);
+}
+.scene .building:nth-child(2):after{
+  inset:17px 10px 23px;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 16px,#405963 16px 19px),
+    repeating-linear-gradient(0deg,#f2d99f 0 15px,#526873 15px 19px,#d5d5c8 19px 22px);
+  border:3px solid #526873;
+}
+.scene .building:nth-child(3){
+  height:91px;width:13%;max-width:100px;
+  background:linear-gradient(90deg,#684e40,#b17c59 25%,#c69b72 70%,#654b3e);
+  border:2px solid #644c40;border-bottom:4px solid #493a34;
+}
+.scene .building:nth-child(3):after{
+  inset:13px 7px 22px;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 17px,#6a4938 17px 21px),
+    repeating-linear-gradient(0deg,#e7c48d 0 13px,#795b47 13px 17px,#d8b887 17px 20px);
+  border:3px solid #755843;
+}
+.scene .building:nth-child(4){
+  height:128px;width:14%;max-width:110px;
+  background:linear-gradient(90deg,#536c77,#c4d0c9 25%,#9eb3b4 75%,#465e69);
+}
+.scene .building:nth-child(4):after{
+  inset:14px 8px 23px;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 15px,#3b5661 15px 19px),
+    repeating-linear-gradient(0deg,#f4dda7 0 14px,#3f5b66 14px 18px,#c9d0c8 18px 21px);
+  border:3px solid #526a73;
+}
+.scene .building:hover{filter:brightness(1.13) saturate(1.05)}
+.scene.night .building:after{background-color:#263f4c;filter:drop-shadow(0 0 5px #f5d38b66)}
+@media(max-width:560px){
+ .scene .building:before{font-size:5px;letter-spacing:0}
+ .scene .building:after{inset-left:5px;inset-right:5px}
+}
 </style>
 </head>
 <body>
