@@ -380,12 +380,14 @@ function nearest(){
  for(const p of places){const n=Math.hypot(player.x-p.x,player.z-p.z);if(n<d){d=n;best=p;}}
  return d<23?best:null;
 }
+let workShiftActive=false;
+document.addEventListener("maple:work-shift-state",e=>{workShiftActive=!!e.detail?.active;});
 function interact(){
- const p=nearest();
- // Clock in at the employer's building before checking nearby task stations.
- if(p){document.dispatchEvent(new CustomEvent("maple:interact",{detail:{id:p.id}}));return;}
  let station=null,distance=1e9;
  for(const item of workStations){const d=Math.hypot(player.x-item.x,player.z-item.z);if(d<distance){distance=d;station=item;}}
+ if(workShiftActive&&station&&distance<9){document.dispatchEvent(new CustomEvent("maple:workstation-interact",{detail:{id:station.id}}));return;}
+ const p=nearest();
+ if(p){document.dispatchEvent(new CustomEvent("maple:interact",{detail:{id:p.id}}));return;}
  if(station&&distance<9){document.dispatchEvent(new CustomEvent("maple:workstation-interact",{detail:{id:station.id}}));return;}
  document.dispatchEvent(new CustomEvent("maple:game-toast",{detail:{message:"Move closer to a building or marked work station."}}));
 }
