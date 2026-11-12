@@ -515,6 +515,7 @@
     else if(id==="police")gameToast("Maplewood Police Station");
   });
   document.addEventListener("maple:workstation-interact",e=>completeWorkStation(e.detail?.id));
+  document.dispatchEvent(new CustomEvent("maple:work-shift-state",{detail:{active:!!state.workShift}}));
   $("#gamePanelContent")?.addEventListener("click",e=>{if(e.target.closest("[data-work-close]"))$("#gamePanel").classList.remove("open");});
   document.addEventListener("maple:game-toast",e=>gameToast(e.detail?.message||""));
   const oldRender=render;render=function(){oldRender();renderGameHud();};
