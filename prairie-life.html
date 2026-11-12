@@ -336,6 +336,24 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 @media(max-width:850px){.wrap{padding:9px}.layout{gap:10px}.panel{border-radius:7px}}
 @media(prefers-reduced-motion:no-preference){.scene{animation:gameGlow 7s ease-in-out infinite alternate}@keyframes gameGlow{from{box-shadow:0 0 0 3px #07111b,0 0 20px #39c9ed12,inset 0 -100px 100px #07111b66}to{box-shadow:0 0 0 3px #07111b,0 0 30px #39c9ed30,inset 0 -100px 100px #07111b66}}}
 
+
+/* Traffic visibility fix: keep vehicles inside the town viewport */
+.town-world{container-type:inline-size}
+.town-car{z-index:6;display:block;visibility:visible!important;opacity:1;animation:town-traffic 18s linear infinite!important;will-change:transform}
+.car-one{animation-delay:0s!important}
+.car-two{bottom:2px;font-size:23px;animation-delay:-6s!important}
+.town-truck{bottom:15px;font-size:30px;animation-delay:-12s!important}
+@keyframes town-traffic{
+  0%{transform:translateX(-75px);opacity:1}
+  100%{transform:translateX(calc(100cqw + 90px));opacity:1}
+}
+@media(prefers-reduced-motion:reduce){
+ .town-car{animation:none!important;opacity:1!important;transform:none!important}
+ .car-one{left:12%!important}
+ .car-two{left:47%!important}
+ .town-truck{left:76%!important}
+}
+
 </style>
 </head>
 <body>
