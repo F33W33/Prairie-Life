@@ -3,202 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10251f">
-  <meta name="description" content="Maple Life — your journey, your decisions, your Maple Life. A Canadian life simulation game.">
-  <title>Maple Life 🍁</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js" defer></script>
-  <script src="game3d.js" defer></script>
-  <script src="script.js" defer></script>
+  <meta name="theme-color" content="#101923">
+  <meta name="description" content="Prairie Life: The Great White North — build your own Canadian life.">
+  <title>Prairie Life: The Great White North</title>
+  <meta http-equiv="refresh" content="0; url=prairie-life.html">
+  <script>window.location.replace("prairie-life.html");</script>
+  <style>
+    body{margin:0;min-height:100vh;display:grid;place-items:center;background:#101923;color:#f2f5f7;font:16px system-ui,sans-serif}
+    main{text-align:center;padding:32px}
+    a{display:inline-block;margin-top:12px;padding:12px 18px;border-radius:12px;background:#f2bd59;color:#20232a;text-decoration:none;font-weight:700}
+  </style>
 </head>
 <body>
-<section id="authScreen" class="auth-screen" aria-label="Maple Life welcome">
-  <div class="auth-scene">
-    <div class="auth-scene-top"><span class="auth-mark">🍁</span><span>MAPLE LIFE</span><span class="auth-live"><i></i> YOUR CANADIAN STORY</span></div>
-    <div class="auth-skyline" aria-hidden="true"><span>🏙️</span><span>🏡</span><span>🌲</span><span>🏢</span><span>🌳</span></div>
-    <div class="auth-scene-copy"><span class="auth-kicker">A WORLD OF YOUR OWN</span><h1>Your life.<br><em>Your city.</em><br>Your story.</h1><p>Explore Saskatoon, find your place, and make every day your own.</p><div class="auth-scene-tags"><span>🍁 Made for Canada</span><span>🌆 Explore Saskatoon</span></div></div>
-    <div class="auth-scene-bottom">A NEW DAY IS WAITING FOR YOU <span>✦</span></div>
-  </div>
-  <div class="auth-card-wrap">
-    <div class="auth-card">
-      <div class="auth-card-leaf">🍁</div>
-      <div class="auth-eyebrow">WELCOME TO MAPLE LIFE</div>
-      <h2>Ready to move in?</h2>
-      <p class="auth-intro">Your next chapter starts here. Step into the city and start building your life.</p>
-      <button class="auth-primary" id="authSignup" type="button"><span><b>Create an account</b><small>Start a new resident profile</small></span><strong>→</strong></button>
-      <button class="auth-secondary" id="authLogin" type="button"><span>Already have an account?</span> <b>Log in</b></button>
-      <a href="prairie-life.html" style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;margin-top:12px;padding:15px 17px;border:1px solid #d8b86d;border-radius:13px;background:#fff8e9;color:#29382f;text-decoration:none;font-weight:800"><span>🍁 Play Prairie Life: The Great White North<small style="display:block;font-weight:500;opacity:.75">A separate Canadian life simulator</small></span><strong>→</strong></a>
-      <div class="auth-divider"><span>YOUR WORLD IS WAITING</span></div>
-      <div class="auth-preview"><span>🌳</span><span>🏙️</span><span>🏡</span><span>🚲</span><span>☕</span></div>
-      <small class="auth-note">Your character and progress are saved on this device.</small>
-    </div>
-    <div class="auth-footer">🍁 MAPLE LIFE <span>·</span> LIVE. WORK. EXPLORE.</div>
-  </div>
-</section>
-<section id="characterScreen" class="character-screen" aria-label="Character creation">
- <div class="character-top"><div class="character-brand"><span>🍁</span><b>MAPLE LIFE</b></div><span class="character-step">STEP 02 <i></i> CHARACTER CREATION</span></div>
- <div class="character-layout">
-  <div class="character-intro"><span class="auth-kicker">MAKE YOURSELF AT HOME</span><h1>First, let's<br><em>meet you.</em></h1><p>Create your resident and choose how you want to show up in Maplewood. You can update your details later.</p><div class="character-preview-card"><div class="character-preview-halo"></div><div id="characterAvatarPreview">🧑🏽</div><span>YOUR RESIDENT</span><b id="characterNamePreview">New Resident</b><small id="characterProvincePreview">Saskatchewan, Canada</small></div></div>
-  <form id="characterForm" class="character-form">
-   <div class="character-form-heading"><span>🍁 YOUR NEW BEGINNING</span><h2>Build your character.</h2><p>Choose a name, appearance, and home province.</p></div>
-   <label for="characterName">What should we call you?</label><input id="characterName" maxlength="18" placeholder="Enter your character name" required autocomplete="given-name">
-   <label>Choose your appearance</label><div class="character-avatars">
-    <label><input type="radio" name="characterAvatar" value="🧑🏽" checked><span>🧑🏽</span></label><label><input type="radio" name="characterAvatar" value="👩🏻"><span>👩🏻</span></label><label><input type="radio" name="characterAvatar" value="🧔🏾"><span>🧔🏾</span></label><label><input type="radio" name="characterAvatar" value="👨🏻"><span>👨🏻</span></label><label><input type="radio" name="characterAvatar" value="👩🏾"><span>👩🏾</span></label><label><input type="radio" name="characterAvatar" value="🧑🏻"><span>🧑🏻</span></label><label><input type="radio" name="characterAvatar" value="👩🏽"><span>👩🏽</span></label><label><input type="radio" name="characterAvatar" value="🧑🏿"><span>🧑🏿</span></label><label><input type="radio" name="characterAvatar" value="👩🏿"><span>👩🏿</span></label><label><input type="radio" name="characterAvatar" value="👨🏿"><span>👨🏿</span></label>
-   </div>
-   <label for="characterProvince">Where are you moving from?</label><select id="characterProvince"><option>Alberta</option><option>British Columbia</option><option>Manitoba</option><option>New Brunswick</option><option>Newfoundland and Labrador</option><option>Northwest Territories</option><option>Nova Scotia</option><option>Nunavut</option><option>Ontario</option><option>Prince Edward Island</option><option>Quebec</option><option selected>Saskatchewan</option><option>Yukon</option></select>
-   <button class="character-save" type="submit">Save character <span>→</span></button>
-   <button class="character-back" id="characterBack" type="button">← Back to welcome</button>
-  </form>
- </div>
-</section>
-<div id="mapleGame" class="maple-game">
-<header class="game-topbar"><div class="game-brand"><span class="game-leaf">🍁</span><span><b>Maple Life</b><small>LIVE. WORK. EXPLORE.</small></span></div><div class="game-world-info"><div class="game-pill">💵 <b id="gameCash">$1,000</b></div><div class="game-pill province-pill">🍁 <b id="gameProvince">Saskatchewan</b></div></div><div class="game-pill game-date-pill">🍁 <b id="gameDate">MAPLEWOOD · DAY 1</b></div></header>
-<main class="game-world"><div id="maple3d" aria-label="3D Maplewood city. Use WASD or arrow keys to move."></div>
-<div class="life-sidebar phone-launcher" id="lifeSidebar">
-  <button class="phone-launcher-button" data-phone-screen="phone" aria-label="Open phone" title="Open phone">📱</button>
-</div><div class="game-clock" id="gameClock" aria-live="off">☀️ --:-- · DAYTIME</div><div class="game-location" id="gameLocation">📍 MAPLEWOOD DOWNTOWN</div><div class="game-interact" id="gameInteract"></div><div class="game-controls-hint" id="gameCursorHint">MOVE CURSOR TO LOOK</div><div class="game-touch-controls"><button data-move="up">▲</button><div><button data-move="left">◀</button><button data-move="down">▼</button><button data-move="right">▶</button></div></div><aside class="game-needs"><div class="game-need"><span>😊</span><div><b>Happiness</b><i><em id="gameHappyBar" style="width:76%"></em></i></div><strong id="gameHappyValue">76%</strong></div><div class="game-need"><span>🍽️</span><div><b>Hunger</b><i><em id="gameHungerBar" style="width:82%"></em></i></div><strong id="gameHungerValue">82%</strong></div><div class="game-need"><span>⚡</span><div><b>Energy</b><i><em id="gameEnergyBar" style="width:90%"></em></i></div><strong id="gameEnergyValue">90%</strong></div></aside><div class="game-toast" id="gameToast" role="status" aria-live="polite"></div><section class="game-panel" id="gamePanel"><button class="game-panel-close" id="gamePanelClose">×</button><div class="game-panel-content" id="gamePanelContent"></div></section></main></div>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <a class="brand" href="#" aria-label="Maple Life home"><span class="brand-mark">🍁</span><span>maple<span class="brand-light">life</span><small>YOUR STORY STARTS HERE</small></span></a>
-      <div class="side-label">YOUR WORLD</div>
-      <nav class="main-nav" aria-label="Main navigation">
-        <button class="nav-item active" data-view="home"><span>⌂</span> Overview</button>
-        <button class="nav-item" data-view="city"><span>▦</span> Explore city</button>
-        <button class="nav-item" data-view="jobs"><span>▤</span> Careers & jobs</button>
-        <button class="nav-item" data-view="home-life"><span>⌂</span> My home</button>
-        <button class="nav-item" data-view="shop"><span>🛍</span> Marketplace</button>
-        <button class="nav-item" data-view="wallet"><span>＄</span> Wallet & bank</button>
-        <button class="nav-item" data-view="phone"><span>▣</span> My phone</button>
-      </nav>
-      <div class="sidebar-bottom">
-        <div class="weather-mini"><span id="weatherIcon">☀️</span><div><strong id="weatherLabel">Clear skies</strong><small id="weatherTemp">18°C · Spring</small></div></div>
-        <div class="side-profile"><div class="avatar" id="sideAvatar">🧑🏽</div><div class="profile-copy"><strong id="sideName">New Resident</strong><small id="sideProvince">Newcomer</small></div><button id="editProfileButton" class="profile-edit" type="button">Edit</button><button id="resetButton" class="icon-button" title="Reset game" aria-label="Reset game">↻</button></div>
-      </div>
-    </aside>
-
-    <main class="main-area">
-      <header class="topbar">
-        <div><div class="eyebrow" id="dateLabel">MONDAY, MAY 12</div><div class="location-line"><span class="location-dot"></span><span id="topLocation">Maplewood, Canada</span><span class="chevron">⌄</span></div></div>
-        <div class="top-actions"><div class="cash-pill"><span>💵</span><div><small>YOUR BALANCE</small><strong id="topCash">$1,000.00</strong></div></div><button class="icon-button notification" title="Notifications">♧<i></i></button><button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button></div>
-      </header>
-
-      <section id="welcomeView" class="view active-view">
-        <div class="hero-card">
-          <div class="hero-copy"><div class="hero-kicker"><span class="sparkle">✦</span> A FRESH START IN CANADA</div><h1 id="greeting">A new chapter<br>begins, <em>today.</em></h1><p>Every big story starts somewhere. Explore your city, find your path, and build a life that feels like yours.</p><button class="primary-button" data-go="city">Explore your city <span>→</span></button></div>
-          <div class="hero-art" aria-hidden="true"><div class="sun"></div><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div><div class="mountain mountain-back"></div><div class="mountain mountain-front"></div><div class="city-silhouette"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="pine pine-one">♠</div><div class="pine pine-two">♠</div><div class="pine pine-three">♠</div><div class="road"></div><div class="hero-stamp">OH,<br>CANADA!<span>✦</span></div></div>
-        </div>
-
-        <div class="section-heading"><div><div class="eyebrow">YOUR LIFE AT A GLANCE</div><h2>The little things add up.</h2></div><span class="live-tag"><i></i> LIVE STATUS</span></div>
-        <div class="stat-grid">
-          <article class="stat-card"><div class="stat-top"><span class="stat-icon money-icon">＄</span><span class="stat-trend">YOUR WALLET</span></div><strong id="balanceStat">$1,000</strong><small>Available cash</small></article>
-          <article class="stat-card"><div class="stat-top"><span class="stat-icon home-icon">⌂</span><span class="stat-trend">HOUSING</span></div><strong id="housingStat">Starter rental</strong><small id="housingSub">Your first place</small></article>
-          <article class="stat-card"><div class="stat-top"><span class="stat-icon work-icon">▤</span><span class="stat-trend">CAREER</span></div><strong id="careerStat">Unemployed</strong><small id="careerSub">Find your first job</small></article>
-          <article class="stat-card"><div class="stat-top"><span class="stat-icon day-icon">☀</span><span class="stat-trend">YOUR JOURNEY</span></div><strong id="dayStat">Day 1</strong><small id="seasonStat">Spring in Maplewood</small></article>
-        </div>
-
-        <div class="content-grid">
-          <section class="panel needs-panel"><div class="panel-heading"><div><div class="eyebrow">HOW ARE YOU FEELING?</div><h3>Your daily needs</h3></div><span class="mood-badge" id="moodBadge">Doing well ✨</span></div>
-            <div class="need-row"><div class="need-symbol hunger">🍽️</div><div class="need-info"><div><strong>Hunger</strong><span id="hungerValue">82%</span></div><div class="progress-track"><div class="progress-fill hunger-fill" id="hungerBar" style="width:82%"></div></div></div></div>
-            <div class="need-row"><div class="need-symbol energy">⚡</div><div class="need-info"><div><strong>Energy</strong><span id="energyValue">90%</span></div><div class="progress-track"><div class="progress-fill energy-fill" id="energyBar" style="width:90%"></div></div></div></div>
-            <div class="need-row"><div class="need-symbol happiness">☺</div><div class="need-info"><div><strong>Happiness</strong><span id="happinessValue">76%</span></div><div class="progress-track"><div class="progress-fill happiness-fill" id="happinessBar" style="width:76%"></div></div></div></div>
-            <div class="need-tip">💡 <span id="needTip">A good meal and a little rest can make all the difference.</span></div>
-          </section>
-          <section class="panel quick-panel"><div class="panel-heading"><div><div class="eyebrow">MAKE TODAY COUNT</div><h3>Quick activities</h3></div><span class="more-label">YOUR DAY</span></div>
-            <div class="activity-list">
-              <button class="activity-item" data-action="eat"><span class="activity-icon food">🥪</span><span><strong>Grab a bite</strong><small>Get something to eat</small></span><b>−$12</b><span class="activity-arrow">→</span></button>
-              <button class="activity-item" data-action="rest"><span class="activity-icon rest">🛋️</span><span><strong>Take a rest</strong><small>Recharge your energy</small></span><b>Free</b><span class="activity-arrow">→</span></button>
-              <button class="activity-item" data-action="walk"><span class="activity-icon walk">🌳</span><span><strong>Go for a walk</strong><small>Enjoy the neighbourhood</small></span><b>Free</b><span class="activity-arrow">→</span></button>
-            </div>
-          </section>
-        </div>
-        <section class="panel today-panel"><div class="panel-heading"><div><div class="eyebrow">A FEW IDEAS TO GET STARTED</div><h3>Your next steps</h3></div><span class="more-label">NEW RESIDENT CHECKLIST</span></div><div class="task-grid" id="taskList"><button class="task-card" data-go="jobs"><span class="task-check">1</span><span><strong>Find a job</strong><small>Start earning your own money</small></span><span>→</span></button><button class="task-card" data-go="city"><span class="task-check">2</span><span><strong>Explore downtown</strong><small>See what's around you</small></span><span>→</span></button><button class="task-card" data-go="home-life"><span class="task-check">3</span><span><strong>Settle into your home</strong><small>Make your place feel like yours</small></span><span>→</span></button></div></section>
-      </section>
-
-      <section id="cityView" class="view">
-        <div class="page-heading"><div><div class="eyebrow">THERE'S A WHOLE WORLD OUT THERE</div><h1>Explore <em>Maplewood.</em></h1><p>A little city with a lot to discover. Where will you go first?</p></div><div class="city-weather">🌤️ <span>18°C <small>Feels like a good day</small></span></div></div>
-        <div class="city-banner"><div class="city-banner-copy"><span class="hero-kicker">YOUR NEIGHBOURHOOD</span><h2>Make yourself<br>at home.</h2><p>Discover local spots, meet the city, and find your favourite places.</p></div><div class="city-illustration"><div class="city-sun"></div><div class="city-block block-a"></div><div class="city-block block-b"></div><div class="city-block block-c"></div><div class="city-block block-d"></div><div class="city-road"></div></div></div>
-        <div class="maple-3d-panel">
-          <div class="maple-3d-heading"><div><span class="eyebrow">A WORLD YOU CAN WALK THROUGH</span><h2>Maplewood in 3D</h2><p>Take a stroll around your neighbourhood.</p></div><span class="maple-3d-live"><i></i> LIVE WORLD</span></div>
-          <div class="maple-3d-stage" id="maple3dStage">
-            <canvas id="maple3dCanvas" aria-label="Three-dimensional view of Maplewood"></canvas>
-            <div class="maple-3d-hud"><span class="maple-3d-location">🍁 MAPLEWOOD, CANADA</span><span id="maple3dPosition">NEIGHBOURHOOD</span></div>
-            <div class="maple-3d-destinations" aria-label="Quick destinations">
-              <button type="button" data-world-place="cafe">☕ Café</button><button type="button" data-world-place="park">🌲 Park</button><button type="button" data-world-place="market">🛒 Market</button><button type="button" data-world-place="library">📚 Library</button>
-            </div>
-            <div class="maple-3d-controls" aria-hidden="true"><span>W A S D <small>MOVE</small></span><span>↑ ↓ ← → <small>MOVE</small></span><span>DRAG <small>LOOK</small></span></div>
-            <div class="maple-3d-crosshair">+</div>
-          </div>
-          <div class="maple-3d-footer"><span><b>Explore freely.</b> Use WASD or arrow keys to walk. Drag the scene to look around.</span><span id="maple3dStatus">Ready to explore</span></div>
-        </div>
-        <div class="section-heading"><div><div class="eyebrow">PICK A DESTINATION</div><h2>Places around town</h2></div></div>
-        <div class="places-grid" id="placesGrid">
-          <article class="place-card"><div class="place-art cafe-art">☕<span>OPEN</span></div><div class="place-copy"><div class="place-type">FOOD & DRINK</div><h3>Northstar Café</h3><p>A cosy spot for coffee and a fresh pastry.</p><button class="outline-button" data-place="cafe">Visit place <span>→</span></button></div></article>
-          <article class="place-card"><div class="place-art park-art">🌲<span>OPEN</span></div><div class="place-copy"><div class="place-type">OUTDOORS</div><h3>Evergreen Park</h3><p>Take a breath of fresh air and enjoy the trails.</p><button class="outline-button" data-place="park">Visit place <span>→</span></button></div></article>
-          <article class="place-card"><div class="place-art market-art">🛒<span>OPEN</span></div><div class="place-copy"><div class="place-type">SHOPPING</div><h3>Maple Market</h3><p>Pick up groceries and everyday essentials.</p><button class="outline-button" data-place="market">Visit place <span>→</span></button></div></article>
-          <article class="place-card"><div class="place-art rec-art">🏋️<span>OPEN</span></div><div class="place-copy"><div class="place-type">FITNESS</div><h3>Community Centre</h3><p>Get active, have fun, and meet neighbours.</p><button class="outline-button" data-place="gym">Visit place <span>→</span></button></div></article>
-          <article class="place-card"><div class="place-art library-art">📚<span>OPEN</span></div><div class="place-copy"><div class="place-type">COMMUNITY</div><h3>Public Library</h3><p>A quiet place to read, learn, and recharge.</p><button class="outline-button" data-place="library">Visit place <span>→</span></button></div></article>
-          <article class="place-card"><div class="place-art plaza-art">🏙️<span>OPEN</span></div><div class="place-copy"><div class="place-type">DOWNTOWN</div><h3>City Square</h3><p>Explore the heart of Maplewood.</p><button class="outline-button" data-place="square">Visit place <span>→</span></button></div></article>
-        </div>
-      </section>
-
-      <section id="jobsView" class="view">
-        <div class="page-heading"><div><div class="eyebrow">MAKE YOUR OWN WAY</div><h1>Find your <em>thing.</em></h1><p>Every career starts somewhere. Find a job, earn a paycheque, and grow from there.</p></div><div class="career-balance">💵 <span><small>YOUR BALANCE</small><strong id="jobsCash">$1,000</strong></span></div></div>
-        <div class="job-feature"><div><span class="hero-kicker">OPPORTUNITY IS CALLING</span><h2>Your next chapter<br>could start <em>here.</em></h2><p>Choose a job that fits your goals. Work a shift to earn money and build your future.</p></div><div class="job-feature-icon">💼</div></div>
-        <div class="section-heading"><div><div class="eyebrow">OPEN POSITIONS</div><h2>Jobs around town</h2></div><span class="more-label">PAID IN CAD</span></div>
-        <div class="jobs-list" id="jobsList">
-          <article class="job-card"><div class="job-icon retail">🛍️</div><div class="job-details"><span class="job-type">RETAIL</span><h3>Store Associate</h3><p>Help customers, organize shelves, and keep the store running smoothly.</p><div class="job-meta"><span>◷ Flexible shifts</span><span>📍 Maple Market</span></div></div><div class="job-pay"><strong>$18<span>/hr</span></strong><small>Entry level</small><button class="primary-button small-button" data-job="retail">Apply now</button></div></article>
-          <article class="job-card"><div class="job-icon cafe-job">☕</div><div class="job-details"><span class="job-type">FOOD & DRINK</span><h3>Café Crew Member</h3><p>Prepare orders, serve guests, and bring a little warmth to someone's day.</p><div class="job-meta"><span>◷ Part-time</span><span>📍 Northstar Café</span></div></div><div class="job-pay"><strong>$17<span>/hr</span></strong><small>Entry level</small><button class="primary-button small-button" data-job="cafe">Apply now</button></div></article>
-          <article class="job-card"><div class="job-icon delivery">🚲</div><div class="job-details"><span class="job-type">DELIVERY</span><h3>Delivery Rider</h3><p>Get out around the city and deliver local orders on time.</p><div class="job-meta"><span>◷ Flexible shifts</span><span>📍 City-wide</span></div></div><div class="job-pay"><strong>$20<span>/hr</span></strong><small>Entry level</small><button class="primary-button small-button" data-job="delivery">Apply now</button></div></article>
-          <article class="job-card"><div class="job-icon office">💻</div><div class="job-details"><span class="job-type">OFFICE</span><h3>Office Assistant</h3><p>Support a friendly team with admin tasks, documents, and organization.</p><div class="job-meta"><span>◷ Weekdays</span><span>📍 Downtown</span></div></div><div class="job-pay"><strong>$22<span>/hr</span></strong><small>Some experience</small><button class="primary-button small-button" data-job="office">Apply now</button></div></article>
-        </div>
-      </section>
-
-      <section id="home-lifeView" class="view">
-        <div class="page-heading"><div><div class="eyebrow">A PLACE TO CALL YOUR OWN</div><h1>My <em>home.</em></h1><p>Put your feet up. You're home.</p></div></div>
-        <div class="home-feature"><div class="home-room"><div class="room-window"><span>☀</span></div><div class="room-picture">🍁</div><div class="room-sofa">▰</div><div class="room-plant">🪴</div><div class="room-rug"></div></div><div class="home-info"><span class="hero-kicker">YOUR CURRENT ADDRESS</span><h2 id="homeTitle">Starter Apartment</h2><p id="homeDescription">A simple, comfortable place to begin your Canadian story.</p><div class="home-facts"><div><small>MONTHLY RENT</small><strong id="rentValue">$650</strong></div><div><small>HOME TYPE</small><strong id="homeType">Apartment</strong></div></div><button class="primary-button" id="payRentButton">Pay monthly rent <span>→</span></button><small class="muted-note">Rent is paid from your available balance.</small></div></div>
-        <div class="section-heading"><div><div class="eyebrow">ROOM TO GROW</div><h2>Places to call home</h2></div></div><div class="homes-grid" id="homesGrid">
-          <article class="home-option"><div class="home-option-art apartment-art">🏢</div><div class="home-option-copy"><span class="place-type">STARTER HOME</span><h3>Starter Apartment</h3><p>A practical first place with everything you need.</p><strong>$650 <small>/ month</small></strong><button class="outline-button" data-home="starter">Current home</button></div></article>
-          <article class="home-option"><div class="home-option-art condo-art">🏙️</div><div class="home-option-copy"><span class="place-type">CITY LIVING</span><h3>Downtown Condo</h3><p>A modern space close to the action.</p><strong>$1,150 <small>/ month</small></strong><button class="outline-button" data-home="condo">Move in</button></div></article>
-          <article class="home-option"><div class="home-option-art house-art">🏡</div><div class="home-option-copy"><span class="place-type">MORE SPACE</span><h3>Suburban House</h3><p>A little more room and a backyard to enjoy.</p><strong>$1,750 <small>/ month</small></strong><button class="outline-button" data-home="house">Move in</button></div></article>
-        </div>
-      </section>
-
-      <section id="shopView" class="view">
-        <div class="page-heading"><div><div class="eyebrow">THE LITTLE THINGS YOU NEED</div><h1>Local <em>marketplace.</em></h1><p>Stock up on essentials and treat yourself. All prices in Canadian dollars.</p></div><div class="career-balance">🛒 <span><small>YOUR BALANCE</small><strong id="shopCash">$1,000</strong></span></div></div>
-        <div class="shop-grid" id="shopGrid">
-          <article class="shop-item"><div class="shop-item-art">🥪</div><div class="shop-item-copy"><span class="place-type">FOOD</span><h3>Sandwich</h3><p>A fresh, filling lunch.</p><strong>$12.00</strong><button class="primary-button small-button" data-buy="sandwich">Buy item</button></div></article>
-          <article class="shop-item"><div class="shop-item-art">☕</div><div class="shop-item-copy"><span class="place-type">FOOD & DRINK</span><h3>Hot Coffee</h3><p>A warm pick-me-up.</p><strong>$4.50</strong><button class="primary-button small-button" data-buy="coffee">Buy item</button></div></article>
-          <article class="shop-item"><div class="shop-item-art">🍲</div><div class="shop-item-copy"><span class="place-type">FOOD</span><h3>Soup & Bread</h3><p>Comfort food for a chilly day.</p><strong>$9.00</strong><button class="primary-button small-button" data-buy="soup">Buy item</button></div></article>
-          <article class="shop-item"><div class="shop-item-art">🧣</div><div class="shop-item-copy"><span class="place-type">CLOTHING</span><h3>Warm Scarf</h3><p>Stay cosy when it gets cold.</p><strong>$24.00</strong><button class="primary-button small-button" data-buy="scarf">Buy item</button></div></article>
-          <article class="shop-item"><div class="shop-item-art">📚</div><div class="shop-item-copy"><span class="place-type">LIFESTYLE</span><h3>Paperback Book</h3><p>A new story for a quiet evening.</p><strong>$16.00</strong><button class="primary-button small-button" data-buy="book">Buy item</button></div></article>
-          <article class="shop-item"><div class="shop-item-art">🪴</div><div class="shop-item-copy"><span class="place-type">HOME</span><h3>Little Houseplant</h3><p>Add a touch of green to your space.</p><strong>$18.00</strong><button class="primary-button small-button" data-buy="plant">Buy item</button></div></article>
-        </div>
-      </section>
-      <section id="walletView" class="view">
-        <div class="page-heading"><div><div class="eyebrow">KEEP TRACK OF YOUR MONEY</div><h1>Your <em>wallet.</em></h1><p>Every dollar counts. See what you've earned and where it's gone.</p></div></div>
-        <div class="wallet-layout">
-          <div class="wallet-card"><div class="wallet-card-top"><span>🍁 MAPLE BANK</span><span>CANADIAN DOLLAR</span></div><small>AVAILABLE BALANCE</small><strong id="walletBalance">$1,000.00</strong><div class="wallet-card-bottom"><span id="walletHolder">NEW RESIDENT</span><span>•••• 2048</span></div></div>
-          <div class="wallet-summary"><div><small>TOTAL EARNED</small><strong id="totalEarned">$0.00</strong></div><div><small>TOTAL SPENT</small><strong id="totalSpent">$0.00</strong></div></div>
-        </div>
-        <div class="section-heading"><div><div class="eyebrow">YOUR MONEY MOVEMENTS</div><h2>Recent transactions</h2></div><span class="more-label">CAD</span></div>
-        <div class="panel wallet-transactions" id="walletTransactions"><div class="empty-wallet">Your first paycheque or purchase will appear here.</div></div>
-      </section>
-      <section id="phoneView" class="view">
-        <div class="page-heading"><div><div class="eyebrow">YOUR POCKET-SIZED HELPER</div><h1>My <em>phone.</em></h1><p>Quick access to the places and tools you use around Maplewood.</p></div></div>
-        <div class="phone-layout"><div class="phone-device"><div class="phone-notch"></div><div class="phone-screen"><div class="phone-status"><span>9:41</span><span>●●● ▰</span></div><div class="phone-greeting">YOUR MAPLE LIFE</div><div class="phone-time" id="phoneTime">9:41</div><div class="phone-date" id="phoneDate">Day 1 · Maplewood</div><div class="phone-weather">🍁 <span><b id="phoneWeather">A fresh Canadian day</b><small>Maplewood, Canada</small></span></div><div class="phone-app-grid"><button data-phone-go="wallet"><span>💳</span>Bank</button><button data-phone-go="jobs"><span>💼</span>Jobs</button><button data-phone-go="city"><span>🗺️</span>Map</button><button data-phone-go="shop"><span>🛍️</span>Shop</button><button data-phone-go="home-life"><span>🏠</span>Home</button><button data-phone-go="home"><span>📊</span>Stats</button></div><div class="phone-reminder"><b>A little reminder ✨</b><p>Big things start with small steps. Make today count!</p></div></div></div><div class="phone-description"><span class="eyebrow">ALWAYS WITH YOU</span><h2>Everything at your fingertips.</h2><p>Check your balance, look for work, explore the city, or pick up something from the marketplace. Tap an app on your phone to jump straight there.</p><div class="phone-tip">📱 Your Maple Life progress is saved locally in this browser.</div></div></div>
-      </section>
-      <footer class="footer"><span>🍁 <strong>Maple Life</strong> <span class="footer-muted">· Your journey, your decisions.</span></span><span>Made for the love of Canadian life.</span></footer>
-    </main>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <div class="modal-backdrop" id="welcomeModal">
-    <div class="welcome-modal"><button class="modal-close profile-modal-close" id="closeProfileModal" type="button" aria-label="Close">×</button><div class="modal-leaf">🍁</div><div class="eyebrow" id="profileEyebrow">WELCOME TO YOUR NEW BEGINNING</div><h2 id="profileModalTitle">Let's get to know you.</h2><p id="profileModalDescription">Every Maple Life starts with a name. Tell us what to call you.</p><form id="startForm"><label for="playerName">Your name</label><input id="playerName" maxlength="18" placeholder="e.g. Alex" required autocomplete="given-name"><label for="playerProvince">Home province or territory</label><select id="playerProvince"><option>Alberta</option><option>British Columbia</option><option>Manitoba</option><option>New Brunswick</option><option>Newfoundland and Labrador</option><option>Northwest Territories</option><option>Nova Scotia</option><option>Nunavut</option><option>Ontario</option><option>Prince Edward Island</option><option>Quebec</option><option selected>Saskatchewan</option><option>Yukon</option></select><label for="playerAvatar">Choose your avatar</label><div class="avatar-choices"><label><input type="radio" name="avatar" value="🧑🏽" checked><span>🧑🏽</span></label><label><input type="radio" name="avatar" value="👩🏻"><span>👩🏻</span></label><label><input type="radio" name="avatar" value="🧔🏾"><span>🧔🏾</span></label><label><input type="radio" name="avatar" value="👨🏻"><span>👨🏻</span></label><label><input type="radio" name="avatar" value="👩🏾"><span>👩🏾</span></label><label><input type="radio" name="avatar" value="🧑🏻"><span>🧑🏻</span></label><label><input type="radio" name="avatar" value="👩🏽"><span>👩🏽</span></label><label><input type="radio" name="avatar" value="👨🏽"><span>👨🏽</span></label><label><input type="radio" name="avatar" value="🧑🏿"><span>🧑🏿</span></label><label><input type="radio" name="avatar" value="👩🏿"><span>👩🏿</span></label><label><input type="radio" name="avatar" value="👨🏿"><span>👨🏿</span></label></div><button class="primary-button modal-submit" id="profileSubmit" type="submit">Start my Maple Life <span>→</span></button></form><small>Your character and progress are saved on this device.</small></div>
-  </div>
-  <div class="modal-backdrop" id="placeModal"><div class="place-modal"><button class="modal-close" id="closePlace" aria-label="Close">×</button><div class="place-modal-icon" id="placeModalIcon">☕</div><div class="eyebrow" id="placeModalType">YOUR DESTINATION</div><h2 id="placeModalTitle">Northstar Café</h2><p id="placeModalDescription">A lovely place to spend some time.</p><div class="place-actions" id="placeActions"></div></div></div>
+  <main>
+    <h1>🍁 Prairie Life</h1>
+    <p>Entering The Great White North…</p>
+    <a href="prairie-life.html">Start Prairie Life</a>
+  </main>
 </body>
 </html>
