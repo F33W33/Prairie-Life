@@ -522,6 +522,8 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 .scene .town-world.photo-mode:before{content:"";position:absolute;inset:0;z-index:1;display:block;background:linear-gradient(90deg,#07152212,#07152230 60%,#07152278),linear-gradient(0deg,#071522bd,transparent 72%);pointer-events:none}
 .scene .town-world.photo-mode>*:not(.scene-photo){display:none!important}
 .scene .town-world.photo-mode .scene-photo{display:block!important;position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;opacity:1;visibility:visible}
+/* Workplace photos fill the complete viewport without being cropped */
+.scene.workplace .town-world.photo-mode .scene-photo{object-fit:fill;object-position:center center}
 .scene .scene-copy{z-index:2;position:relative}
 \n</style>
 </head>
