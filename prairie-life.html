@@ -450,6 +450,29 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 .career-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,#101e2b99)}
 .career-photo-icon{position:absolute;z-index:1;left:12px;bottom:10px;font-size:25px;filter:drop-shadow(0 2px 4px #0009)}
 .career-photo-pay{position:absolute;z-index:1;right:10px;bottom:12px;padding:5px 8px;border-radius:7px;background:#142535dc;color:#f5d17e;font-size:12px;font-weight:850}
+
+/* Player HUD redesigned as an in-game smartphone */
+.phone-hud{position:sticky;top:16px;align-self:start;overflow:hidden;min-height:620px;padding:27px 15px 25px!important;border:5px solid #66717a!important;border-radius:38px!important;background:linear-gradient(155deg,#111a23,#05090e 72%)!important;box-shadow:0 20px 48px #000b,inset 0 0 0 1px #ffffff24!important}
+.phone-hud:before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:92px;height:19px;border-radius:0 0 13px 13px;background:#030609;border:1px solid #303a42;z-index:2}
+.phone-status{display:flex;justify-content:space-between;align-items:center;margin:0 2px 17px;padding:0 3px;color:#dce8ef;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.phone-status span:last-child{font-size:9px;letter-spacing:.03em;color:#a9bac7}
+.phone-hud .section-head{margin:8px 1px 13px}
+.phone-hud .section-head h3{font-size:17px;letter-spacing:.02em}
+.phone-hud .cards{gap:8px}
+.phone-hud .card{min-width:0;padding:11px 9px;border-radius:16px;background:linear-gradient(145deg,#203448,#142331);border-color:#40576a;box-shadow:inset 0 1px #ffffff12}
+.phone-hud .card h2{font-size:clamp(18px,2vw,23px);overflow-wrap:anywhere;margin:3px 0}
+.phone-hud .card .muted{font-size:9px;letter-spacing:.09em;font-weight:800}
+.phone-hud .card small{font-size:10px}
+.phone-hud .event{border:1px solid #52697a;border-left:3px solid var(--gold);border-radius:14px;background:linear-gradient(135deg,#26394b,#182735);padding:12px;margin:13px 0 17px;font-size:12px}
+.phone-hud .section-head h3{font-size:15px}
+.phone-hud .log{max-height:190px;padding:9px 10px;border:1px solid #344b5d;border-radius:13px;background:#0d1822}
+.phone-hud .log p{font-size:11px}
+.phone-hud .actions button{font-size:11px;padding:9px 10px}
+.phone-hud .notice{font-size:10px;line-height:1.4;color:#8298a8}
+.phone-home-indicator{width:92px;height:4px;margin:16px auto 0;border-radius:99px;background:#dce5eb;opacity:.65}
+@media(max-width:900px){.phone-hud{position:relative;top:auto;min-height:0;max-width:460px;width:100%;margin:0 auto}.phone-hud .log{max-height:150px}}
+@media(max-width:480px){.phone-hud{border-radius:31px!important;padding:25px 13px 20px!important}.phone-status{font-size:9px}}
+
 </style>
 </head>
 <body>
@@ -463,8 +486,9 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 <div class="content" id="content"></div>
 <div class="footer"><span id="locationLabel">📍 Saskatoon, Saskatchewan</span><button class="quiet" id="saveBtn">Save game</button></div>
 </section>
-<aside class="panel">
-<div class="section-head"><h3>🎮 Player HUD</h3><span class="badge" id="jobBadge">No job yet</span></div>
+<aside class="panel phone-hud">
+<div class="phone-status"><span>Prairie Mobile</span><span>● ● ● &nbsp; Wi-Fi &nbsp; ▰</span></div>
+<div class="section-head"><h3>📱 My Phone</h3><span class="badge" id="jobBadge">No job yet</span></div>
 <div class="cards" style="grid-template-columns:repeat(2,1fr)">
 <div class="card"><span class="muted">BANK</span><h2 id="cashLabel">$2,500</h2><small class="muted">Canadian dollars</small></div>
 <div class="card"><span class="muted">INVENTORY</span><h2 id="itemCount">3 items</h2><small class="muted" id="homeLabel">No home rented</small></div>
@@ -474,6 +498,7 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 <div class="log" id="log"></div>
 <div class="actions" style="margin-top:14px"><button id="nextDay" class="primary" style="flex:1">🌙 End day</button><button id="resetBtn" class="quiet">↻ New game</button></div>
 <p class="notice">Time advances when you take an action or end the day. Your choices affect your finances, energy, happiness, career and relationships.</p>
+<div class="phone-home-indicator"></div>
 </aside>
 </main>
 </div>
