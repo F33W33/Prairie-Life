@@ -445,6 +445,14 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 .scene.workplace[data-career="Library Page"] .town-world:before{background:repeating-linear-gradient(90deg,#98744d44 0 5px,transparent 5px 24.5%),linear-gradient(180deg,#65513f,#40362f 80%,#302c2b)}
 @media(max-width:560px){.wp-menu{right:5%;top:18%;padding:6px;font-size:8px}.wp-window{left:5%;width:27%;height:27%}.wp-shelf{right:5%;width:43%;height:25%}.wp-sign{max-width:90%;white-space:normal;text-align:center}}
 
+
+/* Fix workplace layer: an older rule hid every direct town-world child */
+.scene.workplace .town-world>.workplace-set{display:block!important;position:absolute!important;inset:0!important;z-index:8!important;visibility:visible!important;opacity:1!important}
+.scene.workplace .town-world>.workplace-set *{visibility:visible}
+.scene.workplace .town-world>*:not(.workplace-set){display:none!important}
+.scene.workplace .town-world:before,.scene.workplace .town-world:after{display:block!important}
+.scene.workplace .scene-copy{z-index:12}
+
 </style>
 </head>
 <body>
