@@ -524,6 +524,8 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 .scene .town-world.photo-mode .scene-photo{display:block!important;position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;opacity:1;visibility:visible}
 /* Workplace photos fill the complete viewport without being cropped */
 .scene.workplace .town-world.photo-mode .scene-photo{object-fit:fill;object-position:center center}
+/* Hide the old illustrated workplace grid and counter layers above the photo */
+.scene.workplace .town-world.photo-mode::before,.scene.workplace .town-world.photo-mode::after{content:none!important;display:none!important;background:none!important;border:0!important;box-shadow:none!important}
 .scene .scene-copy{z-index:2;position:relative}
 \n</style>
 </head>
