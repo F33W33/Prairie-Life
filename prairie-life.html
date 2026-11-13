@@ -526,6 +526,9 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 .scene.workplace .town-world.photo-mode .scene-photo{object-fit:fill;object-position:center center}
 /* Hide the old illustrated workplace grid and counter layers above the photo */
 .scene.workplace .town-world.photo-mode::before,.scene.workplace .town-world.photo-mode::after{content:none!important;display:none!important;background:none!important;border:0!important;box-shadow:none!important}
+/* Anchor the workplace photograph to the scene itself, not the shorter town layer */
+.scene.workplace .town-world.photo-mode{position:static!important;inset:auto!important;overflow:visible!important}
+.scene.workplace .town-world.photo-mode .scene-photo{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:fill!important;z-index:0!important}
 .scene .scene-copy{z-index:2;position:relative}
 \n</style>
 </head>
