@@ -530,7 +530,57 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 .scene.workplace .town-world.photo-mode{position:static!important;inset:auto!important;overflow:visible!important}
 .scene.workplace .town-world.photo-mode .scene-photo{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center center!important;z-index:0!important}
 .scene .scene-copy{z-index:2;position:relative}
-\n</style>
+\n
+/* Relaxed prairie palette: warm paper, sage, muted forest and soft clay */
+:root{
+ --bg:#e9e6dc;--panel:#f5f2e9;--panel2:#e8e6d9;--line:#d2d0c1;
+ --ink:#35433b;--muted:#788176;--gold:#c49a58;--green:#78977b;
+ --red:#bd7c70;--blue:#829b9a;
+}
+body{
+ background:radial-gradient(ellipse at 12% 0%,#e4e9dc 0,transparent 38%),
+ linear-gradient(145deg,#eeeade,#e5e2d6 58%,#e9e5d9);
+ background-attachment:fixed;color:var(--ink)
+}
+.top{border-bottom:1px solid #cfcdbf}
+.brand h1{color:#435648}
+.brand p{color:#7b887a}
+.leaf{background:linear-gradient(145deg,#d9c79d,#b7c3a5);box-shadow:0 5px 16px #788c6930}
+.date{background:#f7f4eb;border:1px solid #d6d2c4;backdrop-filter:none;color:#788176}
+.date strong{color:#9b7946}
+.panel{background:linear-gradient(155deg,#f8f5ec,#eeece2);border:1px solid #d5d1c3;box-shadow:0 8px 24px #6d705b12}
+.stat,.card{background:#eeece2;border-color:#d7d4c7;color:#435047}
+.stat span,.card p,.muted{color:#7c867b}
+.stat strong{color:#45574a}
+.meter{background:#dedfd3}.meter i{background:#91a88a}
+button{background:#e5e7dc;border-color:#cbd1c3;color:#435348}
+button:hover{border-color:#b49a6b;box-shadow:0 4px 12px #7d84621c}
+.primary,.tabs button.active{background:#b7c5aa;color:#344538;border-color:#a9b99b}
+.quiet{background:transparent}
+.event{background:#e9e8dc;border-left-color:#b99a68;color:#4e5b50}
+.event strong{color:#927345}
+.log p{border-color:#dedbd0;color:#68766c}
+.badge{background:#e1e5d9;color:#63725f}
+.place{background:#e5e8dc}
+.place small{color:#718071}
+input,select{background:#faf8f0;color:#39483e;border-color:#d0d0c2}
+.overlay{background:#35443bc9}
+.modal{background:#f5f2e9;border-color:#d1cdbf;color:#3e4b40;box-shadow:0 20px 70px #39483e33}
+.field label,.notice{color:#778176}
+.detail-overlay{background:#35443bc9}
+.detail-modal{background:#f5f2e9;border-color:#d1cdbf;color:#3e4b40}
+.detail-body p{color:#68766c}
+.detail-meta span{background:#e9e8dc;border-color:#d2d0c1;color:#4d5b50}
+.visual-card{background:#f5f2e9;border-color:#d6d2c4}
+.visual-card:hover,.visual-card:focus-visible{border-color:#b99a68;box-shadow:0 10px 22px #65735b20}
+.visual-card-copy small{color:#92794e}
+.visual-card-copy p{color:#788176}
+.visual-card-copy strong{color:#927345}
+.visual-card-copy em{color:#6f7c70}
+.career-photo,.career-image-card{border-color:#d6d2c4}
+.footer{color:#7b8679}
+
+</style>
 </head>
 <body>
 <div class="wrap">
