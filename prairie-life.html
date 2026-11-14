@@ -530,7 +530,43 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 .scene.workplace .town-world.photo-mode{position:static!important;inset:auto!important;overflow:visible!important}
 .scene.workplace .town-world.photo-mode .scene-photo{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center center!important;z-index:0!important}
 .scene .scene-copy{z-index:2;position:relative}
-\n</style>
+\n
+/* Cleaner day/time HUD: show the clock as a simple detail, not a separate timeline widget */
+.top{align-items:center!important}
+.date{
+  display:grid!important;
+  grid-template-columns:1fr auto!important;
+  grid-template-areas:"day clock" "weather clock"!important;
+  align-items:center!important;
+  gap:3px 14px!important;
+  min-width:245px!important;
+  padding:10px 14px!important;
+  border-radius:14px!important;
+}
+.date strong{grid-area:day!important;margin:0!important}
+#weatherLabel{grid-area:weather!important}
+.clockline{
+  grid-area:clock!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0!important;
+  padding:8px 11px!important;
+  min-width:100px!important;
+  border-radius:10px!important;
+  background:#f0f1e9!important;
+  border:1px solid #dce0d5!important;
+  color:#526454!important;
+  font-size:13px!important;
+}
+.clockline #clockLabel{font-size:13px!important;font-weight:800!important;white-space:nowrap!important}
+.clockline #timePhase,.daytrack{display:none!important}
+@media(max-width:520px){
+ .date{width:100%!important;min-width:0!important;grid-template-columns:1fr auto!important}
+ .clockline{min-width:0!important}
+}
+
+</style>
 </head>
 <body>
 <div class="wrap">
