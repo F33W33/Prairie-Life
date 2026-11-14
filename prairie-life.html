@@ -652,6 +652,37 @@ button:hover:not(:disabled){transform:none!important;box-shadow:none!important}
 .phone-hud .log p{color:#68766b!important;border-color:#e0e3d9!important}
 @media(max-width:900px){.phone-hud{max-width:none!important;width:100%!important;margin:0!important}}
 
+
+/* Mobile viewport repair: remove the desktop-width canvas that causes the blank gutter */
+html,body{width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;overflow-x:hidden!important}
+body{
+  min-height:100vh!important;
+  background:#dfe5d8!important;
+  background-image:linear-gradient(180deg,#e9e8dc 0%,#dce5d8 48%,#d3dfd2 100%)!important;
+  background-attachment:scroll!important;
+}
+.wrap{width:100%!important;max-width:1540px!important;min-width:0!important;margin:0 auto!important;padding-left:clamp(10px,2.5vw,24px)!important;padding-right:clamp(10px,2.5vw,24px)!important}
+.top,.layout,.layout>section,.layout>aside,.panel,.scene{min-width:0!important;max-width:100%!important}
+.layout{grid-template-columns:minmax(0,1fr) minmax(0,.72fr)!important}
+@media(max-width:900px){
+  .wrap{width:100%!important;max-width:100%!important;margin:0!important;padding:10px!important}
+  .layout{width:100%!important;grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+  .layout>section,.layout>aside{width:100%!important;min-width:0!important}
+  .top{width:100%!important;min-width:0!important;flex-wrap:wrap!important;gap:10px!important}
+  .brand{min-width:0!important;flex:1 1 180px!important}
+  .date{min-width:0!important;width:auto!important;max-width:100%!important;flex:1 1 180px!important}
+  .phone-hud{width:100%!important;max-width:none!important;margin:0!important}
+}
+@media(max-width:480px){
+  .wrap{padding:8px!important}
+  .top{padding:10px!important}
+  .brand h1{font-size:22px!important}
+  .date{flex-basis:100%!important}
+  .panel{width:100%!important;padding:10px!important}
+  .scene{width:100%!important;min-height:280px!important}
+  .tabs{max-width:100%!important}
+}
+
 </style>
 </head>
 <body>
