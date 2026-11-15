@@ -615,7 +615,64 @@ input,select{background:#fff;color:#304435;border-color:#d7e0d3}
 .mapgrid .place{background:#edf1e8;color:#344b39}
 .mapgrid .place small{color:#718071}
 .scene{box-shadow:inset 0 0 0 1px #ffffff70,0 10px 25px #40553a16}
-.rental-cost-hint{display:flex;align-items:baseline;gap:7px;margin-top:9px;padding:8px 10px;border-radius:9px;background:#edf2e9;color:#627663;font-size:10px}.rental-cost-hint b{margin-left:auto;color:#3e6947;font-size:12px}.rental-cost-hint small{color:#8a9685;font-size:9px}.rental-card{border-color:#dce4d8;box-shadow:0 5px 16px #3b533b10}.rental-card:hover{border-color:#9eb49a;box-shadow:0 10px 22px #3b533b1c}.rental-filter.active{background:#456b4d!important;border-color:#456b4d!important;color:#fff!important}.rental-current-home{background:#eaf1e6;border-color:#d4e1d0}.rental-lease-card{background:#eaf1e6;border-color:#d4e1d0}.rental-phone{box-shadow:0 16px 40px #334b3218}@media(max-width:600px){.rental-cost-hint{flex-wrap:wrap}.rental-cost-hint b{margin-left:auto}}</style>
+.rental-cost-hint{display:flex;align-items:baseline;gap:7px;margin-top:9px;padding:8px 10px;border-radius:9px;background:#edf2e9;color:#627663;font-size:10px}.rental-cost-hint b{margin-left:auto;color:#3e6947;font-size:12px}.rental-cost-hint small{color:#8a9685;font-size:9px}.rental-card{border-color:#dce4d8;box-shadow:0 5px 16px #3b533b10}.rental-card:hover{border-color:#9eb49a;box-shadow:0 10px 22px #3b533b1c}.rental-filter.active{background:#456b4d!important;border-color:#456b4d!important;color:#fff!important}.rental-current-home{background:#eaf1e6;border-color:#d4e1d0}.rental-lease-card{background:#eaf1e6;border-color:#d4e1d0}.rental-phone{box-shadow:0 16px 40px #334b3218}@media(max-width:600px){.rental-cost-hint{flex-wrap:wrap}.rental-cost-hint b{margin-left:auto}}
+/* Final palette pass: replace leftover navy interface surfaces with the Prairie Rentals sage/cream palette */
+.phone-hud,
+.phone-hud .card,
+.phone-hud .event,
+.phone-hud .log,
+.detail-modal,
+.detail-meta span,
+.visual-card,
+.visual-card>img,
+.career-image-card,
+.career-image-card .career-photo,
+.mapgrid .place:not(.place-image-card){
+  background-color:#fbfbf5!important;
+  color:#293b30!important;
+  border-color:#d8e0d2!important;
+  box-shadow:0 8px 22px #40553a12!important;
+}
+.phone-hud .card,
+.phone-hud .event,
+.phone-hud .log,
+.detail-modal,
+.detail-meta span,
+.visual-card,
+.career-image-card{
+  background-image:none!important;
+}
+.phone-hud .card h2,
+.phone-hud .card strong,
+.phone-hud .event strong,
+.detail-body h2,
+.visual-card-copy h4,
+.visual-card-copy strong,
+.career-image-card h4{
+  color:#344b39!important;
+}
+.phone-hud .card .muted,
+.phone-hud .notice,
+.phone-hud .log p,
+.detail-body p,
+.visual-card-copy p,
+.career-image-card p{
+  color:#718071!important;
+}
+.phone-hud .event{border-left:4px solid #779774!important;background:#f0f3e9!important}
+.phone-hud .log{background:#f5f6ef!important}
+.detail-modal{border:1px solid #d8e0d2!important}
+.detail-meta span{background:#edf2e9!important;color:#526653!important}
+.detail-close{background:#456b4d!important;color:#fff!important;border-color:#dce5d8!important}
+.visual-card-copy{background:#fbfbf5!important}
+.visual-card-copy small{color:#668d68!important}
+.career-image-card .career-photo-open{background:#456b4d!important;color:#fff!important}
+.mapgrid .place:not(.place-image-card){background:#edf1e8!important;color:#344b39!important}
+.mapgrid .place:not(.place-image-card) small{color:#718071!important}
+.phone-hud .actions button,.phone-hud button{background:#e9eee5!important;color:#344b39!important;border-color:#d6dfd2!important}
+.phone-hud .actions button.primary,.phone-hud button.primary{background:#557b58!important;color:#fff!important;border-color:#557b58!important}
+
+</style>
 </head>
 <body>
 <div class="wrap">
