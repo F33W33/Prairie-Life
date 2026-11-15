@@ -672,6 +672,43 @@ input,select{background:#fff;color:#304435;border-color:#d7e0d3}
 .phone-hud .actions button,.phone-hud button{background:#e9eee5!important;color:#344b39!important;border-color:#d6dfd2!important}
 .phone-hud .actions button.primary,.phone-hud button.primary{background:#557b58!important;color:#fff!important;border-color:#557b58!important}
 
+
+/* Comprehensive surface override — background shorthand removes old navy gradients too */
+html,body{background:#f2f3e9!important;color:#293b30!important}
+body{background-image:radial-gradient(ellipse at 12% 0%,#e4ebdc 0,transparent 38%),linear-gradient(145deg,#f4f4eb,#e9eee4 65%,#f6f4eb)!important}
+.top,.date,.panel,.layout>section.panel,.layout>aside.panel,.stat,.stats .stat,.tabs,.tabs button,.card,.career-header,.career-current,.career-card,.event,aside .event,.log,.modal,#setup .modal,.detail-modal,.detail-meta span,.visual-card,.visual-card-copy,.phone-hud,.phone-hud .card,.phone-hud .event,.phone-hud .log{
+ background:#fbfbf5!important;
+ background-image:none!important;
+ color:#293b30!important;
+ border-color:#d8e0d2!important;
+ box-shadow:0 8px 22px #40553a12!important;
+ backdrop-filter:none!important;
+}
+.top{background:#f5f6ef!important}
+.date,.stat,.stats .stat,.tabs{background:#edf1e8!important}
+.tabs button{background:#fff!important;color:#526653!important}
+.tabs button.active{background:#456b4d!important;color:#fff!important;border-color:#456b4d!important;box-shadow:0 4px 12px #456b4d22!important}
+.card,.career-card,.visual-card{background:#fff!important}
+.career-header,.career-current,.event,aside .event{background:#f0f3e9!important}
+.log,.phone-hud .log{background:#f5f6ef!important}
+.phone-hud{border:1px solid #d8e0d2!important;border-radius:24px!important}
+.phone-hud:before{background:#d8e0d2!important;border-color:#cbd6c8!important}
+.phone-hud .card,.phone-hud .event{background:#f0f3e9!important}
+.detail-modal,#setup .modal{background:#fbfbf5!important}
+.detail-close{background:#456b4d!important;color:#fff!important}
+.top *, .panel *, .card *, .career-header *, .career-current *, .career-card *, .event *, .log *, .modal *, .detail-modal *{color:inherit}
+.muted,.card p,.career-card p,.career-header p,.career-current p,.event p,.log p,.detail-body p{color:#718071!important}
+button{background:#e9eee5!important;color:#344b39!important;border-color:#d6dfd2!important}
+button.primary{background:#557b58!important;color:#fff!important;border-color:#557b58!important}
+input,select{background:#fff!important;color:#304435!important;border-color:#d7e0d3!important}
+.badge{background:#e7eee3!important;color:#557052!important;border-color:#d9e3d5!important}
+/* Preserve photographic scenes and listing photographs */
+.scene,.scene .town-world,.scene .town-world .scene-photo,.scene-copy,.place-image-card,.place-image-card img,.place-image-shade,.rental-photo-wrap,.rental-photo-wrap img,.detail-hero,.visual-card>img,.career-photo{background-color:transparent}
+.scene{color:#fff!important}
+.scene-copy{background:linear-gradient(100deg,#0b1824d9,#0b182488)!important;color:#fff!important;border-color:#ffffff35!important}
+.scene-copy *{color:#fff!important}
+.place-image-card{color:#fff!important;background-color:#172b3c!important}
+
 </style>
 </head>
 <body>
