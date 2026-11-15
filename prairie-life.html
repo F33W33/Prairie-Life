@@ -821,6 +821,34 @@ input:not([type="range"]),textarea,select,[contenteditable="true"],[contentedita
   border-radius:7px!important;
 }
 
+
+/* Text interaction override: text itself is not a click target */
+/* Prevent selecting ordinary copy or getting an I-beam over it */
+html,body,body *{cursor:default!important;-webkit-user-select:none!important;user-select:none!important}
+p,h1,h2,h3,h4,h5,h6,small,strong,b,em,i,span,
+li,dt,dd,figcaption,blockquote,.muted,.notice,.eyebrow{
+  cursor:default!important;
+  pointer-events:none!important;
+}
+/* Interactive surfaces remain interactive; their child text passes clicks through to them */
+button,button *,a,a *,[role="button"],[role="button"] *,
+[data-action],[data-action] *,[data-tab],[data-tab] *,
+[data-open-career],[data-open-career] *,
+[data-open-housing],[data-open-housing] *,
+[data-open-shop],[data-open-shop] *,
+[data-open-city],[data-open-city] *,
+[data-town],[data-town] *,
+.scene .building,.scene .building *,
+input[type="range"],input[type="checkbox"],input[type="radio"],summary{
+  cursor:pointer!important;
+}
+input,textarea,select,[contenteditable="true"],[contenteditable=""]{
+  cursor:text!important;
+  -webkit-user-select:text!important;
+  user-select:text!important;
+  pointer-events:auto!important;
+}
+
 </style>
 </head>
 <body>
