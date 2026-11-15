@@ -732,6 +732,47 @@ input,select{background:#fff!important;color:#304435!important;border-color:#d7e
 .phone-hud{background:#fbfbf5!important;border-color:#cbd6c8!important;box-shadow:0 16px 38px #344b3920,inset 0 0 0 1px #ffffff!important}
 .phone-hud:before{background:#d8e0d2!important;border-color:#cbd6c8!important}
 
+
+/* Prairie Life readability and cursor cleanup */
+/* Keep ordinary text readable on every cream/sage surface */
+body{color:#293b30!important}
+.top,.date,.panel,.stat,.tabs,.card,.career-header,.career-current,.career-card,
+.event,.log,.modal,.detail-modal,.detail-meta,.visual-card,.visual-card-copy,
+.phone-hud,.rental-phone,.rental-card,.rental-lease-card,.rental-current-home,
+.rental-cost-hint,.mapgrid .place:not(.place-image-card){
+  color:#293b30!important;
+}
+.panel h1,.panel h2,.panel h3,.panel h4,.panel h5,.panel h6,
+.card h1,.card h2,.card h3,.card h4,.card h5,.card h6,
+.modal h1,.modal h2,.modal h3,.modal h4,
+.detail-modal h1,.detail-modal h2,.detail-modal h3,.detail-modal h4,
+.visual-card-copy h1,.visual-card-copy h2,.visual-card-copy h3,.visual-card-copy h4,
+.rental-phone h1,.rental-phone h2,.rental-phone h3,.rental-phone h4{
+  color:#304936!important;
+}
+.panel p,.panel small,.panel label,.panel li,.panel span,
+.card p,.card small,.card label,.card li,.card span,
+.modal p,.modal small,.modal label,.modal li,.modal span,
+.detail-modal p,.detail-modal small,.detail-modal label,.detail-modal li,.detail-modal span,
+.visual-card-copy p,.visual-card-copy small,.visual-card-copy span,
+.rental-phone p,.rental-phone small,.rental-phone label,.rental-phone li,.rental-phone span{
+  color:#586b59!important;
+}
+/* Retain distinct status colours, with enough contrast on pale backgrounds */
+.good{color:#3f7047!important}.bad,.danger{color:#985044!important}
+.price,.card .price,#cashLabel{color:#456f49!important}
+.scene,.scene-copy,.scene-copy *,.place-image-card,.place-image-card *{color:inherit}
+.scene-copy,.scene-copy *{color:#344b39!important;text-shadow:none!important}
+/* Text is not an editable field: show the normal pointer, not an I-beam */
+*,*::before,*::after{cursor:default}
+button,a,[role="button"],[data-action],[data-open-career],[data-open-housing],
+[data-open-shop],[data-open-location],[data-open-place],.scene .building,
+.career-card,.rental-card,.visual-card,.place-image-card{
+  cursor:pointer!important;
+}
+input:not([type="range"]),textarea,select,[contenteditable="true"]{cursor:text!important}
+input[type="range"]{cursor:pointer!important}
+
 </style>
 </head>
 <body>
