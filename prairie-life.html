@@ -999,6 +999,20 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
   border:1px solid #ffffff66!important;
 }
 
+
+/* A legacy scene-level pseudo panel was still painting over the top of photo-mode images */
+.scene:has(>.town-world.photo-mode)::before,
+.scene:has(>.town-world.photo-mode)::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  opacity:0!important;
+}
+.scene:has(>.town-world.photo-mode)>.town-world.photo-mode{z-index:0!important}
+.scene:has(>.town-world.photo-mode)>.scene-copy{z-index:5!important}
+
 </style>
 </head>
 <body>
