@@ -1013,11 +1013,17 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
 .scene:has(>.town-world.photo-mode)>.town-world.photo-mode{z-index:0!important}
 .scene:has(>.town-world.photo-mode)>.scene-copy{z-index:5!important}
 
+
+/* Official uploaded Prairie Life logo */
+.brand{gap:0!important;min-width:0!important}
+.brand-logo{display:block;width:176px;height:auto;max-height:100px;object-fit:contain;border-radius:8px}
+@media(max-width:560px){.brand-logo{width:132px;max-height:76px}}
+
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="top"><div class="brand"><div class="leaf" aria-label="Prairie Life prairie emblem"><svg viewBox="0 0 64 64" role="img" aria-hidden="true"><circle cx="44" cy="16" r="8" fill="#e8c978"/><path d="M5 37 17 27l8 7 9-12 10 13 7-6 8 8v13H5Z" fill="#9bb58b"/><path d="M5 43q13-10 26 0t28 0v13H5Z" fill="#547653"/><path d="M5 50q14-8 27 0t27 0v6H5Z" fill="#78976d"/><path d="M14 36V23h7v13m3 0V17h8v19m3 0V25h7v11" fill="#f5edda" stroke="#46654b" stroke-width="1.5" stroke-linejoin="round"/><path d="m49 8 2 4 4-1-2 4 3 3-5-.2-2 4-1-4-4-1 3-2Z" fill="#b94c3b"/></svg></div><div><h1>Prairie Life</h1></div></div><div class="date"><strong id="dayLabel">Day 1 · Spring</strong><span id="weatherLabel">⛅ +4°C · Saskatoon</span><div class="clockline"><span id="clockLabel">🕗 8:00 AM</span><span id="timePhase">DAYTIME</span></div><div class="daytrack" aria-label="Daytime and nighttime cycle"><span class="phase-night">🌙</span><span class="phase-sun" id="sunMarker">☀️</span><span class="phase-night">🌙</span></div></div></header>
+<header class="top"><div class="brand"><img class="brand-logo" src="Prairie%20Life%20Logo.webp" alt="Prairie Life logo"></div><div class="date"><strong id="dayLabel">Day 1 · Spring</strong><span id="weatherLabel">⛅ +4°C · Saskatoon</span><div class="clockline"><span id="clockLabel">🕗 8:00 AM</span><span id="timePhase">DAYTIME</span></div><div class="daytrack" aria-label="Daytime and nighttime cycle"><span class="phase-night">🌙</span><span class="phase-sun" id="sunMarker">☀️</span><span class="phase-night">🌙</span></div></div></header>
 <main class="layout">
 <section class="panel">
 <div class="scene winter" id="scene"><div class="town-world" aria-label="Animated town"><div class="town-sun"></div><div class="town-cloud cloud-a"></div><div class="town-cloud cloud-b"></div><div class="town-tree tree-a">🌲</div><div class="town-tree tree-b">🌲</div><div class="skyline"><button class="building" data-town="Delta Hotels Bessborough" data-address="601 Spadina Crescent East" title="Visit Prairie Market"></button><button class="building" data-town="Midtown Shopping Centre" data-address="201 1st Avenue South" title="Visit downtown offices"></button><button class="building" data-town="Saskatoon City Hall" data-address="222 3rd Avenue North" title="Visit Northstar Café"></button><button class="building" data-town="Frances Morrison Central Library" data-address="311 23rd Street East" title="Visit Central Library"></button></div><div class="town-sidewalk"></div><div class="town-road"><span class="road-dash"></span><span class="road-dash"></span><span class="road-dash"></span></div><div class="town-car car-one">🚙</div><div class="town-car car-two">🚗</div><div class="town-car town-truck">🚚</div><div class="town-person person-one">🚶</div><div class="town-person person-two">🧍</div><div class="town-person person-three">🚶‍♀️</div><div class="town-label">MAPLE AVENUE <i>·</i> DOWNTOWN</div></div><div class="scene-copy"><small id="sceneKicker">YOUR NEW BEGINNING</small><h2 id="sceneTitle">A fresh start on the Prairies</h2><p id="sceneSub">Big skies. Bigger possibilities. Dress in layers.</p><button id="leaveLocation" class="quiet" hidden>↩ Return to town</button></div></div>
