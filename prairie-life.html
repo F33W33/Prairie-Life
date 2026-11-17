@@ -387,7 +387,7 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 .avatar-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0 18px}
 .avatar-option{min-width:0;padding:8px 5px 9px;border:2px solid #e0e5d9;border-radius:13px;background:#fbfcf8;color:#50634b;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;transition:border-color .15s,background .15s}
 .avatar-option svg{width:100%;height:112px;max-width:84px;display:block}
-.avatar-option span{font-size:10px;font-weight:800;text-align:center}
+.avatar-option{min-height:142px;padding:7px 4px}.avatar-option svg{height:132px;max-width:92px}.avatar-option.selected{transform:translateY(-2px)}
 .avatar-option.selected{border-color:#71896a;background:#edf3e8;box-shadow:0 0 0 2px #71896a20}
 .avatar-option:focus-visible{outline:3px solid #9eaf88;outline-offset:2px}
 .avatar-hint{margin:3px 0 9px;color:#75806e;font-size:11px;line-height:1.5;text-align:center}
@@ -1260,7 +1260,7 @@ function avatarSvg(a){
 }
 function renderAvatarGallery(){
  const gallery=$('avatarGallery');if(!gallery)return;
- gallery.innerHTML=avatarPresets.map((a,i)=>'<button type="button" class="avatar-option '+(i===selectedAvatarIndex?'selected':'')+'" data-avatar="'+i+'" aria-pressed="'+(i===selectedAvatarIndex)+'">'+avatarSvg(a)+'<span>'+a.name+'</span></button>').join('');
+ gallery.innerHTML=avatarPresets.map((a,i)=>'<button type="button" class="avatar-option '+(i===selectedAvatarIndex?'selected':'')+'" data-avatar="'+i+'" aria-label="Select avatar '+(i+1)+'" aria-pressed="'+(i===selectedAvatarIndex)+'">'+avatarSvg(a)+'</button>').join('');
 }
 function updateAvatarPreview(){
  const a=avatarPresets[selectedAvatarIndex]||avatarPresets[0],name=$('nameInput')?.value.trim()||'Your character';
