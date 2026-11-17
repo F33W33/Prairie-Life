@@ -1265,7 +1265,7 @@ function updateAvatarPreview(){
  const a=avatarPresets[selectedAvatarIndex]||avatarPresets[0],name=$('nameInput')?.value.trim()||'Your character';
  if($('avatarPreview'))$('avatarPreview').innerHTML=avatarSvg(a);
  if($('previewName'))$('previewName').textContent=name;
- if($('previewStyle'))$('previewStyle').textContent=a.name+' · Full-body avatar';
+ if($('previewStyle'))$('previewStyle').textContent='Full-body avatar';
 }
 function log(t){logs.unshift('Day '+g.day+': '+t);logs=logs.slice(0,18);$('log').innerHTML=logs.map(x=>'<p>'+esc(x)+'</p>').join('')}function stats(){let a=[['💪','Energy',g.energy],['😊','Happiness',g.happy],['❄️','Winter resilience',g.winter],['🤝','Reputation',g.rep]];$('stats').innerHTML=a.map(x=>'<div class="stat"><span>'+x[0]+' '+x[1]+'</span><strong>'+x[2]+'/100</strong><div class="meter"><i style="width:'+x[2]+'%"></i></div></div>').join('')}function side(){$('cashLabel').textContent=cash(g.cash);$('itemCount').textContent=g.items.length+' items';$('homeLabel').textContent=g.home||'No home rented';$('jobBadge').textContent=g.job?g.job[0]:'No job yet';if(!logs.length)$('log').innerHTML='<p>Your story is just beginning.</p>'}function apply(x){g.cash=Math.max(0,g.cash+(x.cash||0));g.energy=clamp(g.energy+(x.energy||0));g.happy=clamp(g.happy+(x.happy||0));g.winter=clamp(g.winter+(x.winter||0));g.rep=clamp(g.rep+(x.rep||0));if(x.day!==false){g.day++;g.hour=((Number(g.hour??8)-6+1)%18)+6}if(x.msg)log(x.msg);render();save()}function card(t,d,p,b,off,a){return '<article class="card"><div class="row"><h4>'+t+'</h4><span class="price">'+p+'</span></div><p>'+d+'</p><button data-action="'+a+'" '+(off?'disabled':'')+'>'+b+'</button></article>'}
 function openDetail(kind,index){
