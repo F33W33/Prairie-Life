@@ -48,19 +48,12 @@ Deno.serve(async (req: Request) => {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 
-  // Remove the player's cloud save first, then delete the Auth user.
-  const { error: saveError } = await admin.from("player_saves").delete().eq("user_id", user.id);
-  if (saveError) {
-    console.error("Could not delete player save:", saveError);
-    return new Response(JSON.stringify({ error: "Your cloud save could not be deleted. Nothing else was changed." }), {
-      status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
-  }
-
+  // Deleting the Auth user cascades to player_saves.user_id via the
+  // foreign key created in supabase-setup.sql.
   const { error: deleteError } = await admin.auth.admin.deleteUser(user.id);
   if (deleteError) {
     console.error("Could not delete auth user:", deleteError);
-    return new Response(JSON.stringify({ error: "The login account could not be deleted. Please contact support." }), {
+    return new Response(JSON.stringify({ error: "The account could not be deleted. Please try again." }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
