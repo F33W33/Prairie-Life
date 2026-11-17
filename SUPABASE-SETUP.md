@@ -37,3 +37,17 @@ The function verifies the player's signed-in access token on the server, then us
 Players must enter their character account name and password again in the confirmation dialog. Deletion cannot be undone. The current device's local save is cleared after the server confirms deletion. Other devices may still have an old local browser copy; they cannot use the deleted account to sign in or sync it, and that local browser data is not remotely erased by this function.
 
 **Important:** The HTML confirmation screen is in place, but account deletion will not complete until the Edge Function has been deployed to Supabase.
+
+
+## Account deletion (required for the Delete Account button)
+
+The repository includes the Edge Function at `supabase/functions/delete-account/index.ts`. It verifies the caller's Supabase session, then uses the server-only service-role key to delete only that authenticated user's Auth account. The `player_saves.user_id` foreign key uses `ON DELETE CASCADE`, so the cloud save is deleted with the account.
+
+Deploy this function to the same Supabase project before enabling account deletion:
+
+1. In the Supabase dashboard, open **Edge Functions** and choose **Deploy a new function** (or create a function named `delete-account`).
+2. Deploy the contents of `supabase/functions/delete-account/index.ts` as the function source. If using the Supabase CLI instead, from the repository folder run `supabase functions deploy delete-account` after linking the project.
+3. The function uses Supabase's built-in server environment variables: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY`. Confirm these are available to the function in the project's Edge Function secrets/settings. **Never paste the service-role key into `prairie-life.html`, GitHub client-side code, or a browser.**
+4. In **Edge Functions → delete-account → Logs**, check for deployment/runtime errors if a deletion attempt fails.
+
+The in-game flow asks for the character account name and password, re-authenticates with Supabase, and calls this function using the resulting session. On success it clears the current device's local save and signs out. Other devices may retain an old browser cache until their next login; when an account has no cloud save, Prairie Life now clears that device's stale local save instead of importing it into a new character.
