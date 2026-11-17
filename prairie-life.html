@@ -382,16 +382,16 @@ input,select{border:1px solid #3d6078!important;border-radius:5px!important;back
 .character-preview>span{display:grid;place-items:center;flex:0 0 76px;width:76px;height:86px;overflow:hidden;border-radius:16px;background:#dfe8d7;font-size:36px}.character-preview>span svg{display:block;width:76px;height:86px}
 .character-preview b,.character-preview small{display:block}.character-preview b{color:#405a40;font-size:15px}.character-preview small{margin-top:4px;color:#788272;font-size:11px}
 
-.avatar-picked>span{flex:0 0 92px;width:92px;height:142px;display:grid;place-items:center;overflow:hidden;border-radius:13px;background:#e4eadc}
-.avatar-picked>span svg{width:88px;height:138px;display:block}
+.avatar-picked>span{flex:0 0 76px;width:76px;height:86px;display:grid;place-items:center;overflow:hidden;border-radius:13px;background:#e4eadc}
+.avatar-picked>span svg{width:76px;height:86px;display:block}
 .avatar-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0 18px}
 .avatar-option{min-width:0;padding:8px 5px 9px;border:2px solid #e0e5d9;border-radius:13px;background:#fbfcf8;color:#50634b;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;transition:border-color .15s,background .15s}
 .avatar-option svg{width:100%;height:112px;max-width:84px;display:block}
-.avatar-option{min-height:142px;padding:7px 4px}.avatar-option svg{height:132px;max-width:92px}.avatar-option.selected{transform:translateY(-2px)}
+.avatar-option{min-height:104px;padding:7px 4px}.avatar-option svg{height:86px;max-width:76px}.avatar-option.selected{transform:translateY(-2px)}
 .avatar-option.selected{border-color:#71896a;background:#edf3e8;box-shadow:0 0 0 2px #71896a20}
 .avatar-option:focus-visible{outline:3px solid #9eaf88;outline-offset:2px}
 .avatar-hint{margin:3px 0 9px;color:#75806e;font-size:11px;line-height:1.5;text-align:center}
-@media(max-width:390px){.avatar-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}.avatar-option svg{height:100px}}
+@media(max-width:390px){.avatar-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}.avatar-option svg{height:82px}}
 .entry-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 #setup .notice{font-size:10px;text-align:center;margin:10px 0 0;color:#849078}
 @media(max-width:480px){#setup{padding:10px}#setup .modal{width:calc(100vw - 20px);max-height:calc(100vh - 20px);padding:22px 18px;border-radius:20px}.entry-two{gap:8px}}
@@ -1253,10 +1253,9 @@ const avatarPresets=[
 ];
 let selectedAvatarIndex=0;
 function avatarSvg(a){
- const hair=a.style==='long'?'M22 46 Q15 10 44 8 Q73 8 66 47 L69 115 Q64 124 56 116 L54 47 Q44 28 33 47 L30 116 Q22 124 18 114Z':a.style==='braids'?'M22 45 Q16 9 44 8 Q72 9 66 46 L70 125 L61 134 L56 47 Q44 28 33 47 L28 134 L18 125Z':a.style==='curls'||a.style==='coils'?'M20 47 Q10 39 18 27 Q12 14 29 13 Q35 0 46 10 Q59 0 66 16 Q78 21 70 37 Q75 49 62 53 Q55 36 46 34 Q32 33 20 47Z':a.style==='waves'?'M22 46 Q14 10 44 8 Q73 8 66 46 Q59 33 52 33 Q45 26 38 34 Q30 32 22 46Z':'M22 46 Q16 10 44 8 Q71 8 65 43 Q57 34 50 34 Q37 29 22 46Z';
- const hairExtras=a.style==='braids'?'<path d="M27 43L23 91 M61 43L65 91" stroke="'+a.hair+'" stroke-width="4" fill="none" stroke-linecap="round"/>':'';
- const outfit='<path d="M21 83 Q25 75 35 73 L53 73 Q64 76 68 84 L74 145 L15 145Z" fill="'+a.shirt+'"/><path d="M35 75 L44 91 L53 75" fill="none" stroke="'+a.accent+'" stroke-width="3"/><path d="M22 139 L66 139 L64 166 L48 166 L44 145 L40 166 L24 166Z" fill="'+a.pants+'"/><path d="M24 163 L40 163 L39 171 L19 171Z M49 163 L65 163 L71 171 L48 171Z" fill="#806b56"/><path d="M22 85 L12 120 M67 85 L77 120" stroke="'+a.skin+'" stroke-width="9" stroke-linecap="round"/>';
- return '<svg viewBox="0 0 88 176" role="img" aria-label="'+a.name+' full-body avatar" xmlns="http://www.w3.org/2000/svg"><path d="M21 83 Q25 75 35 73 L53 73 Q64 76 68 84 L74 145 L15 145Z" fill="'+a.shirt+'"/><path d="M35 75 L44 91 L53 75" fill="none" stroke="'+a.accent+'" stroke-width="3"/><path d="M22 139 L66 139 L64 166 L48 166 L44 145 L40 166 L24 166Z" fill="'+a.pants+'"/><path d="M24 163 L40 163 L39 171 L19 171Z M49 163 L65 163 L71 171 L48 171Z" fill="#806b56"/><path d="M22 85 L12 120 M67 85 L77 120" stroke="'+a.skin+'" stroke-width="9" stroke-linecap="round"/><rect x="38" y="62" width="12" height="15" rx="5" fill="'+a.skin+'"/><ellipse cx="44" cy="42" rx="19" ry="24" fill="'+a.skin+'"/><g fill="'+a.hair+'" stroke="'+a.hair+'" stroke-linecap="round" stroke-linejoin="round">'+hair+'</g>'+hairExtras+'<circle cx="37" cy="44" r="1.5" fill="#493b32"/><circle cx="51" cy="44" r="1.5" fill="#493b32"/><path d="M40 53 Q44 56 48 53" fill="none" stroke="#965e50" stroke-width="1.5" stroke-linecap="round"/></svg>';
+ const hair=a.style==='long'?'<path d="M24 39 Q17 15 38 10 Q63 7 66 34 L65 75 L55 75 L54 37 Q44 25 31 37 L31 75 L22 75Z"/>':a.style==='braids'?'<path d="M22 38 Q16 22 28 17 Q30 7 40 12 Q49 4 57 15 Q68 16 65 31 L61 39 Q57 28 48 29 Q35 27 27 40Z"/>':a.style==='curls'||a.style==='coils'?'<path d="M24 39 Q15 31 23 24 Q19 14 31 15 Q36 5 46 13 Q58 8 62 21 Q72 28 63 40 Q55 28 45 30 Q34 26 24 39Z"/>':a.style==='waves'?'<path d="M23 39 Q17 18 35 12 Q54 5 64 24 Q69 32 62 42 Q57 30 49 31 Q39 25 29 41Z"/>':'<path d="M23 39 Q19 17 38 11 Q57 7 64 27 L61 39 Q53 27 44 29 Q32 27 23 39Z"/>';
+ const extras=a.style==='long'?'<path d="M25 35 Q19 49 23 76 M63 35 Q68 50 64 76" fill="none" stroke="'+a.hair+'" stroke-width="5" stroke-linecap="round"/>':a.style==='braids'?'<path d="M24 37 L21 67 M62 37 L65 67" fill="none" stroke="'+a.hair+'" stroke-width="5" stroke-linecap="round"/><path d="M19 66l4 5 3-5 M63 66l3 5 4-5" fill="none" stroke="'+a.accent+'" stroke-width="1.8"/>':'';
+ return '<svg viewBox="0 0 88 104" role="img" aria-label="Character portrait" xmlns="http://www.w3.org/2000/svg"><path d="M8 104 Q11 76 29 72 L59 72 Q77 78 80 104Z" fill="'+a.shirt+'"/><path d="M35 76 L44 91 L53 76" fill="none" stroke="'+a.accent+'" stroke-width="2.5"/><rect x="37" y="61" width="14" height="17" rx="6" fill="'+a.skin+'"/><ellipse cx="44" cy="43" rx="21" ry="26" fill="'+a.skin+'"/><path d="M24 42 Q22 22 31 17 Q43 6 57 16 Q68 24 64 43 Q57 31 47 30 Q35 29 24 42Z" fill="'+a.hair+'" opacity=".22"/><g fill="'+a.hair+'" stroke="'+a.hair+'" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">'+hair+'</g>'+extras+'<circle cx="36" cy="45" r="1.8" fill="#493b32"/><circle cx="52" cy="45" r="1.8" fill="#493b32"/><path d="M39 55 Q44 59 49 55" fill="none" stroke="#965e50" stroke-width="1.7" stroke-linecap="round"/></svg>';
 }
 function renderAvatarGallery(){
  const gallery=$('avatarGallery');if(!gallery)return;
