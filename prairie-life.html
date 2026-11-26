@@ -1192,7 +1192,7 @@ document.addEventListener('click',function(e){
  try{start()}catch(err){button.textContent='Could not start — tap to retry';button.disabled=false;console.error('Prairie Life start error:',err);alert('Prairie Life could not start: '+(err&&err.message?err.message:'unknown error')+'. Please tell me this message.')}
 },true);const cities={Saskatoon:['Saskatchewan',950,4],Toronto:['Ontario',1850,8],Vancouver:['British Columbia',2050,11],Montreal:['Quebec',1350,6],Calgary:['Alberta',1450,5],Edmonton:['Alberta',1250,2],Winnipeg:['Manitoba',1050,1],Halifax:['Nova Scotia',1450,9],Ottawa:['Ontario',1600,5],"St. John's":['Newfoundland and Labrador',1150,7],Lagos:['Lagos State, Nigeria',850,28],Abuja:['Federal Capital Territory, Nigeria',900,27],'Port Harcourt':['Rivers State, Nigeria',700,27],Kano:['Kano State, Nigeria',550,26],Ibadan:['Oyo State, Nigeria',500,27]};
 /* Ensure every selectable destination has matching game-world data. */
-Array.from(document.querySelectorAll('#cityInput optgroup')).forEach(group=>{Array.from(group.querySelectorAll('option')).forEach(option=>{const cityName=option.textContent.trim();if(!cities[cityName])cities[cityName]=[group.label,950,18];option.value=cityName;});});
+Array.from(document.querySelectorAll('#cityInput optgroup')).forEach(group=>{Array.from(group.querySelectorAll('option')).forEach(option=>{const cityName=cities[option.value]?option.value:option.textContent.trim();if(!cities[cityName])cities[cityName]=[group.label,950,18];option.value=cityName;});});
 
 
 const workplacePhotos={
