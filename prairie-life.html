@@ -1463,3 +1463,19 @@ $('confirmDeleteAccount').addEventListener('click',async()=>{
 });
 $('nextDay').addEventListener('click',nextDay);$('saveBtn').addEventListener('click',()=>{save();$('saveBtn').textContent='Saved ✓'});$('resetBtn').addEventListener('click',()=>{if(confirm('Start a new life?'))$('setup').classList.remove('hidden')});try{initCloud();}catch(e){console.warn('Cloud setup is not configured yet.',e)}updateAvatarPreview();try{let old=JSON.parse(localStorage.getItem('prairieLifeSave'));if(old&&old.g){setAccountStatus('You have a saved life on this device. Sign in with its character account to sync it across devices.')}}catch(e){localStorage.removeItem('prairieLifeSave')}})();</script>
 </body></html>
+
+/* Mobile and no-job town view: show the selected city photograph, never the animated pedestrian scene. */
+@media(max-width:700px){
+  .scene:not(.workplace) .town-world{
+    position:absolute!important;inset:0!important;overflow:hidden!important;
+  }
+  .scene:not(.workplace) .town-world>.scene-photo{
+    display:block!important;position:absolute!important;inset:0!important;
+    width:100%!important;height:100%!important;max-width:none!important;
+    max-height:none!important;object-fit:cover!important;object-position:center 48%!important;
+    opacity:1!important;visibility:visible!important;z-index:0!important;
+  }
+  .scene:not(.workplace) .town-world>:not(.scene-photo){
+    display:none!important;visibility:hidden!important;animation:none!important;
+  }
+}
