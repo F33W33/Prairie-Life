@@ -1107,7 +1107,7 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
 <optgroup label="Europe"><option value="London, United Kingdom">London</option><option value="Paris, France">Paris</option><option value="Rome, Italy">Rome</option><option value="Barcelona, Spain">Barcelona</option><option value="Madrid, Spain">Madrid</option><option value="Amsterdam, Netherlands">Amsterdam</option><option value="Berlin, Germany">Berlin</option><option value="Athens, Greece">Athens</option><option value="Istanbul, Türkiye">Istanbul</option><option value="Zurich, Switzerland">Zurich</option></optgroup>
 <optgroup label="Asia"><option value="Tokyo, Japan">Tokyo</option><option value="Kyoto, Japan">Kyoto</option><option value="Seoul, South Korea">Seoul</option><option value="Beijing, China">Beijing</option><option value="Shanghai, China">Shanghai</option><option value="Hong Kong, China">Hong Kong</option><option value="Singapore">Singapore</option><option value="Bangkok, Thailand">Bangkok</option><option value="Mumbai, India">Mumbai</option><option value="Dubai, United Arab Emirates">Dubai</option></optgroup>
 <optgroup label="Oceania"><option value="Sydney, Australia">Sydney</option><option value="Melbourne, Australia">Melbourne</option><option value="Auckland, New Zealand">Auckland</option></optgroup>
-<optgroup label="Africa"><option value="Cape Town, South Africa">Cape Town</option><option value="Nairobi, Kenya">Nairobi</option><option value="Marrakech, Morocco">Marrakech</option></optgroup>
+<optgroup label="Africa"><option value="Lagos">Lagos, Nigeria</option><option value="Abuja">Abuja, Nigeria</option><option value="Port Harcourt">Port Harcourt, Nigeria</option><option value="Kano">Kano, Nigeria</option><option value="Ibadan">Ibadan, Nigeria</option><option value="Cape Town, South Africa">Cape Town</option><option value="Nairobi, Kenya">Nairobi</option><option value="Marrakech, Morocco">Marrakech</option></optgroup>
 <optgroup label="South America"><option value="Rio de Janeiro, Brazil">Rio de Janeiro</option><option value="Buenos Aires, Argentina">Buenos Aires</option><option value="Lima, Peru">Lima</option><option value="Santiago, Chile">Santiago</option></optgroup>
 <optgroup label="Central America & Caribbean"><option value="Mexico City, Mexico">Mexico City</option><option value="Cancún, Mexico">Cancún</option><option value="Havana, Cuba">Havana</option><option value="San Juan, Puerto Rico">San Juan</option></optgroup>
 </select></div>
@@ -1143,7 +1143,7 @@ document.addEventListener('click',function(e){
  if(!button)return;
  e.preventDefault();e.stopImmediatePropagation();
  try{start()}catch(err){button.textContent='Could not start — tap to retry';button.disabled=false;console.error('Prairie Life start error:',err);alert('Prairie Life could not start: '+(err&&err.message?err.message:'unknown error')+'. Please tell me this message.')}
-},true);const cities={Saskatoon:['Saskatchewan',950,4],Toronto:['Ontario',1850,8],Vancouver:['British Columbia',2050,11],Montreal:['Quebec',1350,6],Calgary:['Alberta',1450,5],Edmonton:['Alberta',1250,2],Winnipeg:['Manitoba',1050,1],Halifax:['Nova Scotia',1450,9],Ottawa:['Ontario',1600,5],"St. John's":['Newfoundland and Labrador',1150,7]};
+},true);const cities={Saskatoon:['Saskatchewan',950,4],Toronto:['Ontario',1850,8],Vancouver:['British Columbia',2050,11],Montreal:['Quebec',1350,6],Calgary:['Alberta',1450,5],Edmonton:['Alberta',1250,2],Winnipeg:['Manitoba',1050,1],Halifax:['Nova Scotia',1450,9],Ottawa:['Ontario',1600,5],"St. John's":['Newfoundland and Labrador',1150,7],Lagos:['Lagos State, Nigeria',850,28],Abuja:['Federal Capital Territory, Nigeria',900,27],'Port Harcourt':['Rivers State, Nigeria',700,27],Kano:['Kano State, Nigeria',550,26],Ibadan:['Oyo State, Nigeria',500,27]};
 
 const workplacePhotos={
 'Café Crew Member':'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1600&auto=format&fit=crop&q=85',
@@ -1172,7 +1172,12 @@ const cityPhotos={
 'Winnipeg':'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&auto=format&fit=crop&q=85',
 'Halifax':'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200&auto=format&fit=crop&q=85',
 'Ottawa':'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&auto=format&fit=crop&q=85',
-"St. John's":'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200&auto=format&fit=crop&q=85'
+"St. John's":'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200&auto=format&fit=crop&q=85',
+'Lagos':'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&auto=format&fit=crop&q=85',
+'Abuja':'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&auto=format&fit=crop&q=85',
+'Port Harcourt':'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&auto=format&fit=crop&q=85',
+'Kano':'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&auto=format&fit=crop&q=85',
+'Ibadan':'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&auto=format&fit=crop&q=85'
 };
 
 const housingOptions=[
