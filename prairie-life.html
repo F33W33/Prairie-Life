@@ -1039,6 +1039,11 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
 .brand-logo{display:block;width:176px;height:auto;max-height:100px;object-fit:contain;border-radius:8px}
 @media(max-width:560px){.brand-logo{width:132px;max-height:76px}}
 
+
+/* 3D avatar portrait assets */
+.avatar-option .avatar-art{width:100%;height:112px;max-width:100px;display:block;object-fit:contain;border-radius:9px;user-select:none;pointer-events:none}
+.avatar-picked>span .avatar-art{width:76px;height:86px;display:block;object-fit:contain;user-select:none}
+@media(max-width:390px){.avatar-option .avatar-art{height:82px}}
 </style>
 </head>
 <body>
@@ -1269,21 +1274,13 @@ const avatarPresets=[
  {name:'Noah',skin:'#edc29e',hair:'#95633e',style:'short',shirt:'#779080',pants:'#536b68',accent:'#e4d3b4'},
  {name:'Milan',skin:'#583827',hair:'#211d1b',style:'coils',shirt:'#9b7186',pants:'#536b68',accent:'#d9b88e'},
  {name:'Dakota',skin:'#d7a17c',hair:'#493027',style:'long',shirt:'#b28a5e',pants:'#536b68',accent:'#ead4b5'}
+ {name:'Parker',skin:'#c58e6c',hair:'#30201b',style:'curls',shirt:'#7f9b86',pants:'#536b68',accent:'#e5c69d'},
 ];
 let selectedAvatarIndex=0;
 function avatarSvg(a){
- const hair=a.style==='long'?'<path d="M24 39 Q17 15 38 10 Q63 7 66 34 L65 75 L55 75 L54 37 Q44 25 31 37 L31 75 L22 75Z"/>':a.style==='braids'?'<path d="M22 38 Q16 22 28 17 Q30 7 40 12 Q49 4 57 15 Q68 16 65 31 L61 39 Q57 28 48 29 Q35 27 27 40Z"/>':a.style==='curls'||a.style==='coils'?'<path d="M24 39 Q15 31 23 24 Q19 14 31 15 Q36 5 46 13 Q58 8 62 21 Q72 28 63 40 Q55 28 45 30 Q34 26 24 39Z"/>':a.style==='waves'?'<path d="M23 39 Q17 18 35 12 Q54 5 64 24 Q69 32 62 42 Q57 30 49 31 Q39 25 29 41Z"/>':'<path d="M23 39 Q19 17 38 11 Q57 7 64 27 L61 39 Q53 27 44 29 Q32 27 23 39Z"/>';
- const extras=a.style==='long'?'<path d="M25 35 Q19 49 23 76 M63 35 Q68 50 64 76" fill="none" stroke="'+a.hair+'" stroke-width="5" stroke-linecap="round"/>':a.style==='braids'?'<path d="M24 37 L21 67 M62 37 L65 67" fill="none" stroke="'+a.hair+'" stroke-width="5" stroke-linecap="round"/><path d="M19 66l4 5 3-5 M63 66l3 5 4-5" fill="none" stroke="'+a.accent+'" stroke-width="1.8"/>':'';
- const expression=a.expression||({Harper:'happy',Kai:'wink',Riley:'calm',Morgan:'surprised',Quinn:'grin',Sage:'thoughtful',Finley:'happy',Reese:'wink',Milan:'calm',Dakota:'surprised'}[a.name]||'smile');
- let face='';
- if(expression==='happy')face='<path d="M32 47 Q36 43 40 47 M48 47 Q52 43 56 47" fill="none" stroke="#493b32" stroke-width="2" stroke-linecap="round"/><path d="M37 56 Q44 64 51 56" fill="none" stroke="#965e50" stroke-width="2.2" stroke-linecap="round"/>';
- else if(expression==='wink')face='<circle cx="36" cy="47" r="2" fill="#493b32"/><path d="M48 47 Q52 44 56 47" fill="none" stroke="#493b32" stroke-width="2" stroke-linecap="round"/><path d="M38 57 Q45 62 51 55" fill="none" stroke="#965e50" stroke-width="2" stroke-linecap="round"/>';
- else if(expression==='surprised')face='<ellipse cx="36" cy="47" rx="2.4" ry="3" fill="#493b32"/><ellipse cx="52" cy="47" rx="2.4" ry="3" fill="#493b32"/><ellipse cx="44" cy="58" rx="3" ry="4" fill="none" stroke="#965e50" stroke-width="2"/>';
- else if(expression==='calm')face='<path d="M32 47 Q36 49 40 47 M48 47 Q52 49 56 47" fill="none" stroke="#493b32" stroke-width="2" stroke-linecap="round"/><path d="M40 57 Q44 59 48 57" fill="none" stroke="#965e50" stroke-width="1.8" stroke-linecap="round"/>';
- else if(expression==='grin')face='<circle cx="36" cy="47" r="2" fill="#493b32"/><circle cx="52" cy="47" r="2" fill="#493b32"/><path d="M35 55 Q44 67 53 55 Q44 61 35 55Z" fill="#965e50" stroke="#965e50" stroke-width="1"/>';
- else if(expression==='thoughtful')face='<circle cx="36" cy="47" r="2" fill="#493b32"/><path d="M48 47 Q52 44 56 47" fill="none" stroke="#493b32" stroke-width="2" stroke-linecap="round"/><path d="M40 58 Q44 56 48 58" fill="none" stroke="#965e50" stroke-width="1.8" stroke-linecap="round"/>';
- else face='<circle cx="36" cy="47" r="2" fill="#493b32"/><circle cx="52" cy="47" r="2" fill="#493b32"/><path d="M38 56 Q44 62 50 56" fill="none" stroke="#965e50" stroke-width="2" stroke-linecap="round"/>';
- return '<svg viewBox="0 0 88 104" role="img" aria-label="Character portrait" xmlns="http://www.w3.org/2000/svg"><path d="M8 104 Q11 76 29 72 L59 72 Q77 78 80 104Z" fill="'+a.shirt+'"/><path d="M35 76 L44 91 L53 76" fill="none" stroke="'+a.accent+'" stroke-width="2.5"/><rect x="37" y="61" width="14" height="17" rx="6" fill="'+a.skin+'"/><ellipse cx="44" cy="43" rx="21" ry="26" fill="'+a.skin+'"/><g fill="'+a.hair+'" stroke="'+a.hair+'" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">'+hair+'</g>'+extras+'<g>'+face+'</g></svg>';
+ const index=avatarPresets.indexOf(a)+1;
+ const file=String(index>0?index:1).padStart(2,'0');
+ return '<img class="avatar-art" src="assets/avatars/avatar-'+file+'.webp" alt="" draggable="false">';
 }
 function renderAvatarGallery(){
  const gallery=$('avatarGallery');if(!gallery)return;
