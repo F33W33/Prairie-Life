@@ -1098,15 +1098,16 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
 
 
 
-/* Desktop-only live updates and recent activity */
-.desktop-updates{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;margin:0 0 16px;padding:14px 18px;border:1px solid #dce4d5;border-radius:15px;background:linear-gradient(110deg,#fbfcf7,#f0f3e9);box-shadow:0 5px 16px #243b2810;color:#40543c}
-.desktop-updates-current,.desktop-updates-history{min-width:0;display:flex;flex-direction:column;gap:7px}
-.desktop-updates-current{justify-content:center;padding-right:14px;border-right:1px solid #dce4d5}
+/* Desktop live updates sit in their own right-hand sidebar on laptop screens */
+.desktop-updates{grid-column:3;grid-row:1 / span 20;align-self:start;position:sticky;top:16px;display:flex;flex-direction:column;gap:18px;min-width:0;margin:0;padding:16px;border:1px solid #dce4d5;border-radius:15px;background:linear-gradient(160deg,#fbfcf7,#f0f3e9);box-shadow:0 5px 16px #243b2810;color:#40543c}
+.desktop-updates-current,.desktop-updates-history{min-width:0;display:flex;flex-direction:column;gap:8px}
+.desktop-updates-current{padding-bottom:14px;border-bottom:1px solid #dce4d5}
 .updates-eyebrow{font-size:9px;font-weight:850;letter-spacing:.14em;color:#7c8b70}
 .desktop-updates-current>strong{font-size:13px;font-weight:650;line-height:1.45;color:#354b37}
-#activityFeed{display:grid;gap:5px}
-.activity-item{font-size:11px;line-height:1.4;color:#687663;overflow-wrap:anywhere}
+#activityFeed{display:grid;gap:8px}
+.activity-item{font-size:11px;line-height:1.45;color:#687663;overflow-wrap:anywhere}
 .activity-item:first-child{color:#405a40;font-weight:700}
+@media(max-width:1100px) and (min-width:701px){.layout{grid-template-columns:minmax(0,1.55fr) minmax(260px,.85fr)}.desktop-updates{grid-column:1/-1;grid-row:auto;position:static;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);margin:0;padding:14px 18px}.desktop-updates-current{padding:0 14px 0 0;border-bottom:0;border-right:1px solid #dce4d5}}
 @media(max-width:700px){.desktop-updates{display:none!important}}
 /* Always-visible wallet balance */
 .wallet-strip{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px;padding:12px 17px;border:1px solid #f1d69a99;border-radius:15px;background:linear-gradient(110deg,#fff7e5f5,#f1e4c9f5);color:#344b39;box-shadow:0 7px 20px #142b3824;backdrop-filter:blur(12px)}
@@ -1150,10 +1151,7 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
 <div class="wrap">
 <header class="top"><div class="brand"><img class="brand-logo" src="Prairie_Life_Logo-removebg-preview.png" alt="Prairie Life logo"></div><details class="top-menu" id="topMenu"><summary>☰ Menu</summary><div class="top-menu-panel"><button class="primary" id="nextDay" type="button">🌙 End day</button><button id="resetBtn" type="button">↻ New game</button><button id="saveBtn" type="button">Save game</button><button id="accountSettingsBtn" type="button">Account</button></div></details><div class="date"><strong id="dayLabel">Day 1 · Spring</strong><span id="weatherLabel">⛅ +4°C · Saskatoon</span><div class="clockline"><span id="clockLabel">🕗 8:00 AM</span><span id="timePhase">DAYTIME</span></div><div class="daytrack" aria-label="Daytime and nighttime cycle"><span class="phase-night">🌙</span><span class="phase-sun" id="sunMarker">☀️</span><span class="phase-night">🌙</span></div></div></header>
 <div class="wallet-strip" role="status" aria-live="polite"><div class="wallet-strip-label"><span class="wallet-strip-icon" aria-hidden="true">💰</span><span class="wallet-strip-copy"><small>YOUR AVAILABLE MONEY</small><strong id="walletBalance">$2,500</strong></span></div><span class="wallet-strip-note">Canadian dollars · Ready to spend</span></div>
-<section class="desktop-updates" id="desktopUpdates" aria-label="Live game updates">
- <div class="desktop-updates-current"><span class="updates-eyebrow">🔔 LIVE UPDATE</span><strong id="liveMessage" aria-live="polite">Your latest game updates will appear here.</strong></div>
- <div class="desktop-updates-history"><span class="updates-eyebrow">RECENT ACTIVITY</span><div id="activityFeed" aria-live="polite"><div class="activity-item">Your activity will appear here.</div></div></div>
-</section>
+
 <main class="layout">
 <section class="panel">
 <div class="scene winter" id="scene"><div class="town-world" aria-label="Animated town"><div class="town-sun"></div><div class="town-cloud cloud-a"></div><div class="town-cloud cloud-b"></div><div class="town-tree tree-a">🌲</div><div class="town-tree tree-b">🌲</div><div class="skyline"><button class="building" data-town="Delta Hotels Bessborough" data-address="601 Spadina Crescent East" title="Visit Prairie Market"></button><button class="building" data-town="Midtown Shopping Centre" data-address="201 1st Avenue South" title="Visit downtown offices"></button><button class="building" data-town="Saskatoon City Hall" data-address="222 3rd Avenue North" title="Visit Northstar Café"></button><button class="building" data-town="Frances Morrison Central Library" data-address="311 23rd Street East" title="Visit Central Library"></button></div><div class="town-sidewalk"></div><div class="town-road"><span class="road-dash"></span><span class="road-dash"></span><span class="road-dash"></span></div><div class="town-car car-one">🚙</div><div class="town-car car-two">🚗</div><div class="town-car town-truck">🚚</div><div class="town-person person-one">🚶</div><div class="town-person person-two">🧍</div><div class="town-person person-three">🚶‍♀️</div><div class="town-label">MAPLE AVENUE <i>·</i> DOWNTOWN</div></div><div class="scene-copy"><small id="sceneKicker">YOUR NEW BEGINNING</small><h2 id="sceneTitle">A fresh start on the Prairies</h2><p id="sceneSub">Big skies. Bigger possibilities. Dress in layers.</p><button id="leaveLocation" class="quiet" hidden>↩ Return to town</button></div></div>
@@ -1163,7 +1161,10 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
 <div class="footer"><span id="locationLabel">📍 Saskatoon, Saskatchewan</span></div>
 </section>
 
-</main>
+<section class="desktop-updates" id="desktopUpdates" aria-label="Live game updates">
+ <div class="desktop-updates-current"><span class="updates-eyebrow">🔔 LIVE UPDATE</span><strong id="liveMessage" aria-live="polite">Your latest game updates will appear here.</strong></div>
+ <div class="desktop-updates-history"><span class="updates-eyebrow">RECENT ACTIVITY</span><div id="activityFeed" aria-live="polite"><div class="activity-item">Your activity will appear here.</div></div></div>
+</section></main>
 </div>
 <div class="overlay" id="setup">
  <div class="modal prairie-entry">
