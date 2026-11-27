@@ -1191,6 +1191,55 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
   .activity-item{font-size:13px;line-height:1.6}
 }
 @media(max-width:700px){.desktop-updates{display:none!important}}
+
+/* Compact, smoother menu controls */
+.top-menu>summary{
+  padding:9px 13px;
+  gap:6px;
+  border-radius:12px;
+  font-size:12px;
+  letter-spacing:.02em;
+  transition:background .22s ease,border-color .22s ease,box-shadow .22s ease,transform .22s ease;
+}
+.top-menu>summary:hover{transform:translateY(-1px)}
+.top-menu-panel{
+  width:min(205px,calc(100vw - 28px));
+  gap:6px;
+  margin-top:7px;
+  padding:9px;
+  border-radius:14px;
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  visibility:hidden;
+  transform:translateY(-7px) scale(.98);
+  transform-origin:top center;
+  transition:max-height .26s ease,opacity .2s ease,transform .24s ease,visibility .26s;
+}
+.top-menu[open]>.top-menu-panel{
+  max-height:260px;
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0) scale(1);
+}
+.top-menu-panel button{
+  min-height:36px;
+  padding:8px 10px;
+  border-radius:9px;
+  font-size:12px;
+  line-height:1.25;
+  font-weight:700;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+.top-menu-panel button:hover{transform:translateX(2px)}
+@media(max-width:560px){
+  .top-menu>summary{padding:8px 11px;font-size:11px}
+  .top-menu-panel{width:min(195px,calc(100vw - 28px));padding:8px}
+  .top-menu-panel button{min-height:35px;padding:8px 9px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  .top-menu>summary,.top-menu-panel,.top-menu-panel button{transition:none!important;transform:none!important}
+}
 </style>
 </head>
 <body>
