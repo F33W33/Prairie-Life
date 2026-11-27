@@ -1133,22 +1133,9 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
 <div class="stats" id="stats"></div>
 <nav class="tabs" id="tabs"><button data-tab="home" class="active">🏠 Home</button><button data-tab="jobs">💼 Careers</button><button data-tab="housing">🔑 Housing</button><button data-tab="city">🗺️ City</button><button data-tab="shop">🛍️ Shop</button><button data-tab="social">👥 Social</button><button data-tab="inventory">🎒 Inventory</button><button data-tab="activities">🎯 Activities</button></nav>
 <div class="content" id="content"></div>
-<div class="footer"><span id="locationLabel">📍 Saskatoon, Saskatchewan</span><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="quiet" id="accountSettingsBtn">Account</button><button class="quiet" id="saveBtn">Save game</button></div></div>
+<div class="footer"><span id="locationLabel">📍 Saskatoon, Saskatchewan</span><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary" id="nextDay">🌙 End day</button><button class="quiet" id="resetBtn">↻ New game</button><button class="quiet" id="accountSettingsBtn">Account</button><button class="quiet" id="saveBtn">Save game</button></div></div>
 </section>
-<aside class="panel phone-hud">
-<div class="phone-status"><span>Prairie Mobile</span><span>● ● ● &nbsp; Wi-Fi &nbsp; ▰</span></div>
-<div class="section-head"><h3>📱 My Phone</h3><span class="badge" id="jobBadge">No job yet</span></div>
-<div class="cards" style="grid-template-columns:repeat(2,1fr)">
-<div class="card"><span class="muted">BANK</span><h2 id="cashLabel">$2,500</h2><small class="muted">Canadian dollars</small></div>
-<div class="card"><span class="muted">INVENTORY</span><h2 id="itemCount">3 items</h2><small class="muted" id="homeLabel">No home rented</small></div>
-</div>
-<div class="event" id="eventBox"><strong>📨 NEW MESSAGE</strong><span id="eventText">Your first day in Canada starts now.</span></div>
-<div class="section-head"><h3>Recent activity</h3><span class="badge">LIVE</span></div>
-<div class="log" id="log"></div>
-<div class="actions" style="margin-top:14px"><button id="nextDay" class="primary" style="flex:1">🌙 End day</button><button id="resetBtn" class="quiet">↻ New game</button></div>
-<p class="notice">Time advances when you take an action or end the day. Your choices affect your finances, energy, happiness, career and relationships.</p>
-<div class="phone-home-indicator"></div>
-</aside>
+
 </main>
 </div>
 <div class="overlay" id="setup">
@@ -1381,7 +1368,7 @@ function updateAvatarPreview(){
  if($('previewName'))$('previewName').textContent=name;
  if($('previewStyle'))$('previewStyle').textContent='Full-body avatar';
 }
-function log(t){logs.unshift('Day '+g.day+': '+t);logs=logs.slice(0,18);$('log').innerHTML=logs.map(x=>'<p>'+esc(x)+'</p>').join('')}function stats(){let a=[['💪','Energy',g.energy],['😊','Happiness',g.happy],['❄️','Winter resilience',g.winter],['🤝','Reputation',g.rep]];$('stats').innerHTML=a.map(x=>'<div class="stat"><span>'+x[0]+' '+x[1]+'</span><strong>'+x[2]+'/100</strong><div class="meter"><i style="width:'+x[2]+'%"></i></div></div>').join('')}function side(){$('cashLabel').textContent=cash(g.cash);if($('walletBalance'))$('walletBalance').textContent=cash(g.cash);$('itemCount').textContent=g.items.length+' items';$('homeLabel').textContent=g.home||'No home rented';$('jobBadge').textContent=g.job?g.job[0]:'No job yet';if(!logs.length)$('log').innerHTML='<p>Your story is just beginning.</p>'}function apply(x){g.cash=Math.max(0,g.cash+(x.cash||0));g.energy=clamp(g.energy+(x.energy||0));g.happy=clamp(g.happy+(x.happy||0));g.winter=clamp(g.winter+(x.winter||0));g.rep=clamp(g.rep+(x.rep||0));if(x.day!==false){g.day++;g.hour=((Number(g.hour??8)-6+1)%18)+6}if(x.msg)log(x.msg);render();save()}function card(t,d,p,b,off,a){return '<article class="card"><div class="row"><h4>'+t+'</h4><span class="price">'+p+'</span></div><p>'+d+'</p><button data-action="'+a+'" '+(off?'disabled':'')+'>'+b+'</button></article>'}
+function log(t){logs.unshift('Day '+g.day+': '+t);logs=logs.slice(0,18)}function stats(){let a=[['💪','Energy',g.energy],['😊','Happiness',g.happy],['❄️','Winter resilience',g.winter],['🤝','Reputation',g.rep]];$('stats').innerHTML=a.map(x=>'<div class="stat"><span>'+x[0]+' '+x[1]+'</span><strong>'+x[2]+'/100</strong><div class="meter"><i style="width:'+x[2]+'%"></i></div></div>').join('')}function side(){if($('walletBalance'))$('walletBalance').textContent=cash(g.cash)}function apply(x){g.cash=Math.max(0,g.cash+(x.cash||0));g.energy=clamp(g.energy+(x.energy||0));g.happy=clamp(g.happy+(x.happy||0));g.winter=clamp(g.winter+(x.winter||0));g.rep=clamp(g.rep+(x.rep||0));if(x.day!==false){g.day++;g.hour=((Number(g.hour??8)-6+1)%18)+6}if(x.msg)log(x.msg);render();save()}function card(t,d,p,b,off,a){return '<article class="card"><div class="row"><h4>'+t+'</h4><span class="price">'+p+'</span></div><p>'+d+'</p><button data-action="'+a+'" '+(off?'disabled':'')+'>'+b+'</button></article>'}
 function openDetail(kind,index){
  const overlay=$('detailOverlay'),img=$('detailImage'),title=$('detailTitle'),desc=$('detailDescription'),kicker=$('detailKicker'),meta=$('detailMeta'),actions=$('detailActions');
  let photo='',name='',description='',tag='',facts='',buttons='';
