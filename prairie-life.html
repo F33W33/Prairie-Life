@@ -1145,18 +1145,17 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
 }
 
 
-/* Top navigation menu for core game actions */
+/* Frosted-glass top navigation menu */
 .top-menu{position:relative;z-index:20;flex:0 0 auto}
-.top-menu>summary{list-style:none;cursor:pointer;user-select:none;display:flex;align-items:center;gap:7px;padding:11px 16px;border:1px solid #ffffff28;border-radius:13px;background:linear-gradient(145deg,#294454,#1b303b);color:var(--ink);font-weight:800;box-shadow:0 5px 16px #0002}
+.top-menu>summary{list-style:none;cursor:pointer;user-select:none;display:flex;align-items:center;gap:7px;padding:11px 16px;border:1px solid #ffffff55;border-radius:14px;background:linear-gradient(135deg,#ffffff24,#ffffff0b);color:var(--ink);font-weight:800;box-shadow:0 8px 24px #10192322,inset 0 1px #ffffff35;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:background .18s,border-color .18s,box-shadow .18s}
 .top-menu>summary::-webkit-details-marker{display:none}
-.top-menu[open]>summary{border-color:var(--gold);color:var(--gold)}
-.top-menu-panel{position:absolute;right:0;top:calc(100% + 9px);width:min(230px,calc(100vw - 28px));display:grid;gap:8px;padding:12px;border:1px solid #ffffff2a;border-radius:16px;background:linear-gradient(155deg,#263f4e,#172a36);box-shadow:0 18px 45px #0008;backdrop-filter:blur(16px)}
-.top-menu-panel button{width:100%;text-align:left;padding:11px 13px}
-/* Reserve space below the header while the dropdown is open, so it never covers the wallet balance. */
-.top:has(.top-menu[open]){margin-bottom:245px}
-@media(max-width:560px){.top:has(.top-menu[open]){margin-bottom:235px}}
-
-@media(max-width:560px){.top{align-items:center;flex-wrap:wrap}.top-menu{margin-left:auto}.top-menu>summary{padding:9px 13px}.top-menu-panel{right:0}}
+.top-menu>summary:hover{background:linear-gradient(135deg,#ffffff35,#ffffff16);border-color:#ffffff80}
+.top-menu[open]{align-self:flex-start}
+.top-menu[open]>summary{border-color:#f4c46b99;color:var(--gold)}
+.top-menu-panel{position:static;width:min(230px,calc(100vw - 28px));display:grid;gap:8px;margin-top:9px;padding:12px;border:1px solid #ffffff38;border-radius:17px;background:linear-gradient(145deg,rgba(49,73,82,.78),rgba(24,43,52,.82));box-shadow:0 16px 38px #10192344,inset 0 1px #ffffff20;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.top-menu-panel button{width:100%;text-align:left;padding:11px 13px;border:1px solid #ffffff2b;border-radius:11px;background:rgba(255,255,255,.09);color:#f5f7f4;box-shadow:inset 0 1px #ffffff12;backdrop-filter:blur(8px)}
+.top-menu-panel button:hover{background:rgba(255,255,255,.17);border-color:#f4c46b88}
+@media(max-width:560px){.top{align-items:center;flex-wrap:wrap}.top-menu{margin-left:auto}.top-menu>summary{padding:9px 13px}.top-menu-panel{width:min(230px,calc(100vw - 28px))}}
 </style>
 </head>
 <body>
