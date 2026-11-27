@@ -1135,11 +1135,20 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
   }
 }
 
+
+/* Top navigation menu for core game actions */
+.top-menu{position:relative;z-index:20;flex:0 0 auto}
+.top-menu>summary{list-style:none;cursor:pointer;user-select:none;display:flex;align-items:center;gap:7px;padding:11px 16px;border:1px solid #ffffff28;border-radius:13px;background:linear-gradient(145deg,#294454,#1b303b);color:var(--ink);font-weight:800;box-shadow:0 5px 16px #0002}
+.top-menu>summary::-webkit-details-marker{display:none}
+.top-menu[open]>summary{border-color:var(--gold);color:var(--gold)}
+.top-menu-panel{position:absolute;right:0;top:calc(100% + 9px);width:min(230px,calc(100vw - 28px));display:grid;gap:8px;padding:12px;border:1px solid #ffffff2a;border-radius:16px;background:linear-gradient(155deg,#263f4e,#172a36);box-shadow:0 18px 45px #0008;backdrop-filter:blur(16px)}
+.top-menu-panel button{width:100%;text-align:left;padding:11px 13px}
+@media(max-width:560px){.top{align-items:center;flex-wrap:wrap}.top-menu{margin-left:auto}.top-menu>summary{padding:9px 13px}.top-menu-panel{right:0}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header class="top"><div class="brand"><img class="brand-logo" src="Prairie_Life_Logo-removebg-preview.png" alt="Prairie Life logo"></div><div class="date"><strong id="dayLabel">Day 1 · Spring</strong><span id="weatherLabel">⛅ +4°C · Saskatoon</span><div class="clockline"><span id="clockLabel">🕗 8:00 AM</span><span id="timePhase">DAYTIME</span></div><div class="daytrack" aria-label="Daytime and nighttime cycle"><span class="phase-night">🌙</span><span class="phase-sun" id="sunMarker">☀️</span><span class="phase-night">🌙</span></div></div></header>
+<header class="top"><div class="brand"><img class="brand-logo" src="Prairie_Life_Logo-removebg-preview.png" alt="Prairie Life logo"></div><div class="date"><strong id="dayLabel">Day 1 · Spring</strong><span id="weatherLabel">⛅ +4°C · Saskatoon</span><div class="clockline"><span id="clockLabel">🕗 8:00 AM</span><span id="timePhase">DAYTIME</span></div><div class="daytrack" aria-label="Daytime and nighttime cycle"><span class="phase-night">🌙</span><span class="phase-sun" id="sunMarker">☀️</span><span class="phase-night">🌙</span></div></div><details class="top-menu" id="topMenu"><summary>☰ Menu</summary><div class="top-menu-panel"><button class="primary" id="nextDay" type="button">🌙 End day</button><button id="resetBtn" type="button">↻ New game</button><button id="saveBtn" type="button">Save game</button><button id="accountSettingsBtn" type="button">Account</button></div></details></header>
 <div class="wallet-strip" role="status" aria-live="polite"><div class="wallet-strip-label"><span class="wallet-strip-icon" aria-hidden="true">💰</span><span class="wallet-strip-copy"><small>YOUR AVAILABLE MONEY</small><strong id="walletBalance">$2,500</strong></span></div><span class="wallet-strip-note">Canadian dollars · Ready to spend</span></div>
 <section class="desktop-updates" id="desktopUpdates" aria-label="Live game updates">
  <div class="desktop-updates-current"><span class="updates-eyebrow">🔔 LIVE UPDATE</span><strong id="liveMessage" aria-live="polite">Your latest game updates will appear here.</strong></div>
@@ -1151,7 +1160,7 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
 <div class="stats" id="stats"></div>
 <nav class="tabs" id="tabs"><button data-tab="home" class="active">🏠 Home</button><button data-tab="jobs">💼 Careers</button><button data-tab="housing">🔑 Housing</button><button data-tab="city">🗺️ City</button><button data-tab="shop">🛍️ Shop</button><button data-tab="social">👥 Social</button><button data-tab="inventory">🎒 Inventory</button><button data-tab="activities">🎯 Activities</button></nav>
 <div class="content" id="content"></div>
-<div class="footer"><span id="locationLabel">📍 Saskatoon, Saskatchewan</span><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="primary" id="nextDay">🌙 End day</button><button class="quiet" id="resetBtn">↻ New game</button><button class="quiet" id="accountSettingsBtn">Account</button><button class="quiet" id="saveBtn">Save game</button></div></div>
+<div class="footer"><span id="locationLabel">📍 Saskatoon, Saskatchewan</span></div>
 </section>
 
 </main>
@@ -1549,5 +1558,5 @@ $('confirmDeleteAccount').addEventListener('click',async()=>{
  }catch(err){console.error('Account deletion failed:',err);$('deleteAccountStatus').textContent=err.message||'Account deletion failed. Please try again.'}
  finally{btn.disabled=false;btn.textContent='Permanently delete account'}
 });
-$('nextDay').addEventListener('click',nextDay);$('saveBtn').addEventListener('click',()=>{save();$('saveBtn').textContent='Saved ✓'});$('resetBtn').addEventListener('click',()=>{if(confirm('Start a new life?'))$('setup').classList.remove('hidden')});try{initCloud();}catch(e){console.warn('Cloud setup is not configured yet.',e)}updateAvatarPreview();try{let old=JSON.parse(localStorage.getItem('prairieLifeSave'));if(old&&old.g){setAccountStatus('You have a saved life on this device. Sign in with its character account to sync it across devices.')}}catch(e){localStorage.removeItem('prairieLifeSave')}})();</script>
+$('nextDay').addEventListener('click',nextDay);$('saveBtn').addEventListener('click',()=>{save();$('saveBtn').textContent='Saved ✓'});$('resetBtn').addEventListener('click',()=>{if(confirm('Start a new life?'))$('setup').classList.remove('hidden')});['nextDay','resetBtn','saveBtn','accountSettingsBtn'].forEach(id=>$(id).addEventListener('click',()=>{$('topMenu').open=false}));try{initCloud();}catch(e){console.warn('Cloud setup is not configured yet.',e)}updateAvatarPreview();try{let old=JSON.parse(localStorage.getItem('prairieLifeSave'));if(old&&old.g){setAccountStatus('You have a saved life on this device. Sign in with its character account to sync it across devices.')}}catch(e){localStorage.removeItem('prairieLifeSave')}})();</script>
 </body></html>
