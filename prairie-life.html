@@ -1152,6 +1152,10 @@ input,textarea,select,[contenteditable="true"],[contenteditable=""]{
 .top-menu[open]>summary{border-color:var(--gold);color:var(--gold)}
 .top-menu-panel{position:absolute;right:0;top:calc(100% + 9px);width:min(230px,calc(100vw - 28px));display:grid;gap:8px;padding:12px;border:1px solid #ffffff2a;border-radius:16px;background:linear-gradient(155deg,#263f4e,#172a36);box-shadow:0 18px 45px #0008;backdrop-filter:blur(16px)}
 .top-menu-panel button{width:100%;text-align:left;padding:11px 13px}
+/* Reserve space below the header while the dropdown is open, so it never covers the wallet balance. */
+.top:has(.top-menu[open]){margin-bottom:245px}
+@media(max-width:560px){.top:has(.top-menu[open]){margin-bottom:235px}}
+
 @media(max-width:560px){.top{align-items:center;flex-wrap:wrap}.top-menu{margin-left:auto}.top-menu>summary{padding:9px 13px}.top-menu-panel{right:0}}
 </style>
 </head>
